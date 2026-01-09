@@ -269,7 +269,7 @@ class _AddTodoSheetState extends State<AddTodoSheet> {
                 showCheckmark: false,
                 label: Text(
                   priority.name.toUpperCase(),
-                  style: TextStyle(fontSize: 12),
+                  style: const TextStyle(fontSize: 12),
                 ),
                 selected: isSelected,
                 onSelected: (selected) {

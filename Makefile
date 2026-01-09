@@ -38,7 +38,7 @@ format: ## Format code
 	@dart format .
 	@echo '✅ Done!'
 
-check: analyze test ## Run analyze and tests
+check: format analyze test ## Run format, analyze and tests
 	@echo '✅ All checks passed!'
 
 run-android: ## Run on Android device/emulator
@@ -69,6 +69,10 @@ release-ios: ## Build iOS IPA
 setup-github: ## Encode keystore for GitHub
 	@echo '🔐 Encoding keystore...'
 	@./scripts/encode_keystore.sh
+
+setup-hooks: ## Setup git hooks for pre-commit checks
+	@echo '🔧 Setting up git hooks...'
+	@./scripts/setup_git_hooks.sh
 
 git-push: check ## Check code and push to git
 	@echo '🚀 Pushing to git...'
