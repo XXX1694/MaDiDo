@@ -1,0 +1,29 @@
+# Auto-label PRs based on changed files
+
+'feature':
+  - 'lib/features/**'
+
+'bug':
+  - any: ['fix', 'bug', 'hotfix']
+
+'documentation':
+  - '*.md'
+  - 'docs/**'
+
+'ci/cd':
+  - '.github/workflows/**'
+
+'dependencies':
+  - 'pubspec.yaml'
+  - 'pubspec.lock'
+
+'android':
+  - 'android/**'
+
+'ios':
+  - 'ios/**'
+
+'localization':
+  - 'lib/l10n/**'
+  - '**/*.arb'
+

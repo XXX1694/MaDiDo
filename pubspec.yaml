@@ -1,0 +1,40 @@
+name: to_do
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+6
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  equatable: ^2.0.7
+  flutter:
+    sdk: flutter
+  flutter_animate: ^4.5.2
+  flutter_bloc: ^9.1.1
+  flutter_local_notifications: ^19.5.0
+  flutter_localizations:
+    sdk: flutter
+  gap: ^3.0.1
+  get_it: ^9.2.0
+  go_router: ^17.0.1
+  google_fonts: ^6.3.3
+  intl: ^0.20.2
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.5
+  shared_preferences: ^2.5.4
+  timezone: ^0.10.1
+  uuid: ^4.5.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  isar_generator: ^3.1.0+1
+
+flutter:
+  uses-material-design: true
+  generate: true
+

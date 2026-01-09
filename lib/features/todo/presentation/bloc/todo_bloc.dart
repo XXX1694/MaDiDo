@@ -1,0 +1,156 @@
+import 'dart:async';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do/features/todo/domain/entities/todo.dart';
+import 'package:to_do/features/todo/domain/entities/sort_option.dart';
+import 'package:to_do/features/todo/domain/usecases/add_todo_usecase.dart';
+import 'package:to_do/features/todo/domain/usecases/delete_todo_usecase.dart';
+import 'package:to_do/features/todo/domain/usecases/update_todo_usecase.dart';
+import 'package:to_do/features/todo/domain/usecases/watch_todos_usecase.dart';
+import 'package:to_do/features/todo/presentation/bloc/todo_event.dart';
+import 'package:to_do/features/todo/presentation/bloc/todo_state.dart';
+
+class TodoBloc extends Bloc<TodoEvent, TodoState> {
+  final WatchTodosUseCase watchTodosUseCase;
+  final AddTodoUseCase addTodoUseCase;
+  final UpdateTodoUseCase updateTodoUseCase;
+  final DeleteTodoUseCase deleteTodoUseCase;
+
+  StreamSubscription<List<Todo>>? _todosSubscription;
+
+  TodoBloc({
+    required this.watchTodosUseCase,
+    required this.addTodoUseCase,
+    required this.updateTodoUseCase,
+    required this.deleteTodoUseCase,
+  }) : super(const TodoState()) {
+    on<TodosSubscriptionRequested>(_onSubscriptionRequested);
+    on<TodosListUpdated>(_onTodosListUpdated);
+    on<TodosFilterChanged>(_onFilterChanged);
+    on<TodoAdded>(_onTodoAdded);
+    on<TodoUpdated>(_onTodoUpdated);
+    on<TodoCompletionToggled>(_onTodoCompletionToggled);
+    on<TodoDeleted>(_onTodoDeleted);
+    on<TodosSortChanged>(_onSortChanged);
+  }
+
+  @override
+  Future<void> close() {
+    _todosSubscription?.cancel();
+    return super.close();
+  }
+
+  Future<void> _onSubscriptionRequested(
+    TodosSubscriptionRequested event,
+    Emitter<TodoState> emit,
+  ) async {
+    emit(state.copyWith(status: TodoStatus.loading));
+
+    await _todosSubscription?.cancel();
+    _todosSubscription =
+        watchTodosUseCase(
+          categoryId: state.filterCategoryId,
+          priority: state.filterPriority,
+          isCompleted: state.filterIsCompleted,
+        ).listen(
+          (todos) => add(TodosListUpdated(todos)),
+          onError: (error) => emit(
+            state.copyWith(
+              status: TodoStatus.failure,
+              errorMessage: error.toString(),
+            ),
+          ),
+        );
+  }
+
+  Future<void> _onTodosListUpdated(
+    TodosListUpdated event,
+    Emitter<TodoState> emit,
+  ) async {
+    final sorted = _sortTodos(event.todos, state.sortOption);
+    emit(state.copyWith(status: TodoStatus.success, todos: sorted));
+  }
+
+  Future<void> _onFilterChanged(
+    TodosFilterChanged event,
+    Emitter<TodoState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        filterCategoryId: event.categoryId,
+        clearFilterCategoryId: event.categoryId == null,
+        filterPriority: event.priority,
+        clearFilterPriority: event.priority == null,
+        filterIsCompleted: event.isCompleted,
+        clearFilterIsCompleted: event.isCompleted == null,
+      ),
+    );
+    add(TodosSubscriptionRequested());
+  }
+
+  Future<void> _onSortChanged(
+    TodosSortChanged event,
+    Emitter<TodoState> emit,
+  ) async {
+    final sorted = _sortTodos(state.todos, event.sortOption);
+    emit(state.copyWith(todos: sorted, sortOption: event.sortOption));
+  }
+
+  Future<void> _onTodoAdded(TodoAdded event, Emitter<TodoState> emit) async {
+    await addTodoUseCase(event.todo);
+  }
+
+  Future<void> _onTodoCompletionToggled(
+    TodoCompletionToggled event,
+    Emitter<TodoState> emit,
+  ) async {
+    final newTodo = event.todo.copyWith(isCompleted: event.isCompleted);
+    await updateTodoUseCase(newTodo);
+  }
+
+  Future<void> _onTodoUpdated(
+    TodoUpdated event,
+    Emitter<TodoState> emit,
+  ) async {
+    await updateTodoUseCase(event.todo);
+  }
+
+  Future<void> _onTodoDeleted(
+    TodoDeleted event,
+    Emitter<TodoState> emit,
+  ) async {
+    await deleteTodoUseCase(event.id);
+  }
+
+  List<Todo> _sortTodos(List<Todo> todos, SortOption sortOption) {
+    final sortedTodos = List<Todo>.from(todos);
+
+    // Sort logic
+    sortedTodos.sort((a, b) {
+      // 1. Pinned always on top
+      if (a.isPinned && !b.isPinned) return -1;
+      if (!a.isPinned && b.isPinned) return 1;
+
+      switch (sortOption) {
+        case SortOption.createdAt:
+          return b.createdAt.compareTo(a.createdAt);
+        case SortOption.deadline:
+          if (a.deadline == null && b.deadline == null) return 0;
+          if (a.deadline == null) return 1;
+          if (b.deadline == null) return -1;
+          return a.deadline!.compareTo(b.deadline!);
+        case SortOption.alphabetical:
+          return a.title.toLowerCase().compareTo(b.title.toLowerCase());
+        case SortOption.priority:
+          // High > Low (High is index 2?)
+          // Enum: low, medium, high.
+          // index: 0, 1, 2.
+          // Descending index.
+          if (a.priority.index > b.priority.index) return -1;
+          if (a.priority.index < b.priority.index) return 1;
+          return b.createdAt.compareTo(a.createdAt); // Secondary
+      }
+    });
+
+    return sortedTodos;
+  }
+}

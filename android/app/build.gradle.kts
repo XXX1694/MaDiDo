@@ -1,0 +1,86 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id("dev.flutter.flutter-gradle-plugin")
+}
+
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    namespace = "com.abzal.to_do"
+    compileSdk = 35
+    ndkVersion = flutter.ndkVersion
+
+    defaultConfig {
+        applicationId = "com.abzal.to_do"
+        minSdk = flutter.minSdkVersion
+        targetSdk = 35
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        multiDexEnabled = true
+        
+        // Поддержка 16KB страниц памяти для новых устройств Android
+        ndk {
+            //noinspection ChromeOsAbiSupport
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64")
+        }
+        
+        // Включение поддержки 16KB страниц
+        externalNativeBuild {
+            cmake {
+                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
+            }
+        }
+    }
+    
+    packaging {
+        jniLibs {
+            useLegacyPackaging = false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = keystoreProperties["storeFile"]?.let { file(it) }
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            // signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation("androidx.multidex:multidex:2.0.1")
+    implementation("androidx.core:core-ktx:1.15.0")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+}
