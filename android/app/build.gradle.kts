@@ -27,13 +27,7 @@ android {
         versionName = flutter.versionName
         multiDexEnabled = true
         
-        // Поддержка 16KB страниц памяти для новых устройств Android
-        ndk {
-            //noinspection ChromeOsAbiSupport
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64")
-        }
-        
-        // Включение поддержки 16KB страниц
+        // Включение поддержки 16KB страниц памяти для новых устройств Android
         externalNativeBuild {
             cmake {
                 arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
