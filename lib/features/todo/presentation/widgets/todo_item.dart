@@ -158,7 +158,7 @@ class _TodoItemState extends State<TodoItem>
               borderRadius: BorderRadius.circular(16),
               side: widget.todo.isPinned
                   ? BorderSide(
-                      color: priorityColor.withOpacity(0.5),
+                      color: priorityColor.withValues(alpha: 0.5),
                       width: 1.5,
                     )
                   : BorderSide.none,
@@ -251,7 +251,7 @@ class _TodoItemState extends State<TodoItem>
                                     decoration: BoxDecoration(
                                       color: Color(
                                         category.colorValue,
-                                      ).withOpacity(0.2),
+                                      ).withValues(alpha: 0.2),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     child: Text(

@@ -275,7 +275,7 @@ class _AddTodoSheetState extends State<AddTodoSheet> {
                 onSelected: (selected) {
                   if (selected) setState(() => _priority = priority);
                 },
-                selectedColor: color.withOpacity(0.2),
+                selectedColor: color.withValues(alpha: 0.2),
                 backgroundColor: isDark ? Colors.grey[800] : Colors.grey[200],
                 labelStyle: TextStyle(
                   color: isSelected
@@ -321,7 +321,7 @@ class _AddTodoSheetState extends State<AddTodoSheet> {
                           _categoryId = selected ? category.id : null;
                         });
                       },
-                      selectedColor: color.withOpacity(0.2),
+                      selectedColor: color.withValues(alpha: 0.2),
                       backgroundColor: isDark
                           ? Colors.grey[800]
                           : Colors.grey[200],
