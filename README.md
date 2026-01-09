@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![CI Status](https://github.com/YOUR_USERNAME/to_do/workflows/CI%20-%20Analyze%20&%20Test/badge.svg)](https://github.com/YOUR_USERNAME/to_do/actions)
+[![CI Status](https://github.com/XXX1694/MaDiDo/workflows/CI%20-%20Analyze%20&%20Test/badge.svg)](https://github.com/XXX1694/MaDiDo/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.35.2-02569B?logo=flutter)](https://flutter.dev)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -43,7 +43,7 @@ A beautiful, feature-rich TODO application built with Flutter and modern archite
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/to_do.git
+   git clone https://github.com/XXX1694/MaDiDo.git
    cd to_do
    ```
 
@@ -150,14 +150,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Thanks to all [contributors](https://github.com/YOUR_USERNAME/to_do/graphs/contributors)
+- Thanks to all [contributors](https://github.com/XXX1694/MaDiDo/graphs/contributors)
 - Built with [Flutter](https://flutter.dev)
 - Icons from [Material Icons](https://fonts.google.com/icons)
 
 ## 📞 Contact
 
-- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/to_do/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/to_do/discussions)
+- **Issues**: [GitHub Issues](https://github.com/XXX1694/MaDiDo/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/XXX1694/MaDiDo/discussions)
 
 ---
 
