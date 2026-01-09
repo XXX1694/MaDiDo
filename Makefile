@@ -21,6 +21,8 @@ clean: ## Clean build files
 build: ## Generate code with build_runner
 	@echo '🔨 Generating code...'
 	@flutter pub run build_runner build --delete-conflicting-outputs
+	@echo '✨ Formatting generated code...'
+	@dart format .
 	@echo '✅ Done!'
 
 test: ## Run tests
