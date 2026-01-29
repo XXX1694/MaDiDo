@@ -29,5 +29,11 @@
     "addDeadline": "Add deadline",
     "deadline": "Deadline",
     "clearAll": "Clear All",
-    "filters": "Filters"
+    "filters": "Filters",
+    "appTitle": "TaskFlow",
+    "sortBy": "Sort by",
+    "dateCreated": "Date Created",
+    "alphabetical": "A-Z",
+    "priority": "Priority",
+    "category": "Category"
 }

@@ -3,13 +3,12 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 class NotificationService {
-  static final NotificationService _instance = NotificationService._internal();
-
   factory NotificationService() {
     return _instance;
   }
 
   NotificationService._internal();
+  static final NotificationService _instance = NotificationService._internal();
 
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -17,22 +16,21 @@ class NotificationService {
   Future<void> init() async {
     tz.initializeTimeZones();
 
-    const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+    const initializationSettingsAndroid = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    );
 
-    const DarwinInitializationSettings initializationSettingsDarwin =
-        DarwinInitializationSettings(
-          requestSoundPermission: false,
-          requestBadgePermission: false,
-          requestAlertPermission: false,
-        );
+    const initializationSettingsDarwin = DarwinInitializationSettings(
+      requestSoundPermission: false,
+      requestBadgePermission: false,
+      requestAlertPermission: false,
+    );
 
-    const InitializationSettings initializationSettings =
-        InitializationSettings(
-          android: initializationSettingsAndroid,
-          iOS: initializationSettingsDarwin,
-          macOS: initializationSettingsDarwin,
-        );
+    const initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsDarwin,
+      macOS: initializationSettingsDarwin,
+    );
 
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,

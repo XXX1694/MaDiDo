@@ -13,66 +13,59 @@ abstract class TodoEvent extends Equatable {
 class TodosSubscriptionRequested extends TodoEvent {}
 
 class TodoAdded extends TodoEvent {
-  final Todo todo;
-
   const TodoAdded(this.todo);
+  final Todo todo;
 
   @override
   List<Object?> get props => [todo];
 }
 
 class TodoCompletionToggled extends TodoEvent {
+  const TodoCompletionToggled({required this.todo, required this.isCompleted});
   final Todo todo;
   final bool isCompleted;
-
-  const TodoCompletionToggled({required this.todo, required this.isCompleted});
 
   @override
   List<Object?> get props => [todo, isCompleted];
 }
 
 class TodoUpdated extends TodoEvent {
-  final Todo todo;
-
   const TodoUpdated(this.todo);
+  final Todo todo;
 
   @override
   List<Object?> get props => [todo];
 }
 
 class TodoDeleted extends TodoEvent {
-  final String id;
-
   const TodoDeleted(this.id);
+  final String id;
 
   @override
   List<Object?> get props => [id];
 }
 
 class TodosSortChanged extends TodoEvent {
-  final SortOption sortOption;
-
   const TodosSortChanged(this.sortOption);
+  final SortOption sortOption;
 
   @override
   List<Object?> get props => [sortOption];
 }
 
 class TodosFilterChanged extends TodoEvent {
+  const TodosFilterChanged({this.categoryId, this.priority, this.isCompleted});
   final String? categoryId;
   final TodoPriority? priority;
   final bool? isCompleted;
-
-  const TodosFilterChanged({this.categoryId, this.priority, this.isCompleted});
 
   @override
   List<Object?> get props => [categoryId, priority, isCompleted];
 }
 
 class TodosListUpdated extends TodoEvent {
-  final List<Todo> todos;
-
   const TodosListUpdated(this.todos);
+  final List<Todo> todos;
 
   @override
   List<Object?> get props => [todos];

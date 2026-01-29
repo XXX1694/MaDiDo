@@ -29,5 +29,11 @@
     "addDeadline": "Добавить дедлайн",
     "deadline": "Дедлайн",
     "clearAll": "Очистить всё",
-    "filters": "Фильтры"
+    "filters": "Фильтры",
+    "appTitle": "TaskFlow",
+    "sortBy": "Сортировать",
+    "dateCreated": "По дате создания",
+    "alphabetical": "А-Я",
+    "priority": "Приоритет",
+    "category": "Категория"
 }

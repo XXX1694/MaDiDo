@@ -4,11 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class TodoItemTag extends StatelessWidget {
-  final String label;
-  final Color color;
-  final IconData? icon;
-  final bool isLineThrough;
-
   const TodoItemTag({
     super.key,
     required this.label,
@@ -46,6 +41,10 @@ class TodoItemTag extends StatelessWidget {
       isLineThrough: isCompleted,
     );
   }
+  final String label;
+  final Color color;
+  final IconData? icon;
+  final bool isLineThrough;
 
   @override
   Widget build(BuildContext context) {

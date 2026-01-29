@@ -97,4 +97,22 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get filters => 'Сүзгілер';
+
+  @override
+  String get appTitle => 'TaskFlow';
+
+  @override
+  String get sortBy => 'Сұрыптау';
+
+  @override
+  String get dateCreated => 'Жасалған күні';
+
+  @override
+  String get alphabetical => 'Ә-Я';
+
+  @override
+  String get priority => 'Басымдық';
+
+  @override
+  String get category => 'Санат';
 }

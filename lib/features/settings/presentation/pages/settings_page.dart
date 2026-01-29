@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:to_do/features/settings/presentation/bloc/settings_event.dart';
 import 'package:to_do/features/settings/presentation/bloc/settings_state.dart';
-import 'package:to_do/features/settings/presentation/widgets/settings_section_header.dart';
 import 'package:to_do/features/settings/presentation/widgets/settings_chip_selector.dart';
+import 'package:to_do/features/settings/presentation/widgets/settings_section_header.dart';
 import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class SettingsPage extends StatelessWidget {

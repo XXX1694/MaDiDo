@@ -13,9 +13,8 @@ import 'package:to_do/l10n/generated/app_localizations.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class TodoListView extends StatelessWidget {
-  final bool filterCompleted;
-
   const TodoListView({super.key, required this.filterCompleted});
+  final bool filterCompleted;
 
   @override
   Widget build(BuildContext context) {

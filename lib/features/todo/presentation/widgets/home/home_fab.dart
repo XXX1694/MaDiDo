@@ -4,9 +4,8 @@ import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/presentation/widgets/add_todo_sheet.dart';
 
 class HomeFab extends StatelessWidget {
-  final bool isDark;
-
   const HomeFab({super.key, required this.isDark});
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,6 @@ class HomeFab extends StatelessWidget {
           BoxShadow(
             color: AppColors.primaryLight.withValues(alpha: 0.4),
             blurRadius: 20,
-            spreadRadius: 0,
             offset: const Offset(0, 8),
           ),
         ],

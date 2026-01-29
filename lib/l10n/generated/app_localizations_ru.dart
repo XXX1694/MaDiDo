@@ -97,4 +97,22 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get filters => 'Фильтры';
+
+  @override
+  String get appTitle => 'TaskFlow';
+
+  @override
+  String get sortBy => 'Сортировать';
+
+  @override
+  String get dateCreated => 'По дате создания';
+
+  @override
+  String get alphabetical => 'А-Я';
+
+  @override
+  String get priority => 'Приоритет';
+
+  @override
+  String get category => 'Категория';
 }

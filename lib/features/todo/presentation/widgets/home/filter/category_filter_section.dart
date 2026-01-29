@@ -5,11 +5,6 @@ import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/domain/entities/todo_category.dart';
 
 class CategoryFilterSection extends StatelessWidget {
-  final String? selectedCategoryId;
-  final ValueChanged<String?> onCategorySelected;
-  final String label;
-  final bool isDark;
-
   const CategoryFilterSection({
     super.key,
     required this.selectedCategoryId,
@@ -17,6 +12,10 @@ class CategoryFilterSection extends StatelessWidget {
     required this.label,
     required this.isDark,
   });
+  final String? selectedCategoryId;
+  final ValueChanged<String?> onCategorySelected;
+  final String label;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {

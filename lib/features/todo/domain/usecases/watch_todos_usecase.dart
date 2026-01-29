@@ -5,9 +5,8 @@ import 'package:to_do/features/todo/domain/repositories/todo_repository.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
 
 class WatchTodosUseCase {
-  final TodoRepository repository;
-
   WatchTodosUseCase(this.repository);
+  final TodoRepository repository;
 
   Stream<List<Todo>> call({
     String? categoryId,

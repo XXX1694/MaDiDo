@@ -3,10 +3,9 @@ import 'package:to_do/features/todo/domain/repositories/todo_repository.dart';
 import 'package:to_do/core/services/notification_service.dart';
 
 class UpdateTodoUseCase {
+  UpdateTodoUseCase(this.repository, this.notificationService);
   final TodoRepository repository;
   final NotificationService notificationService;
-
-  UpdateTodoUseCase(this.repository, this.notificationService);
 
   Future<void> call(Todo todo) async {
     await repository.updateTodo(todo);

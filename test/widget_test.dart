@@ -32,12 +32,7 @@ void main() {
     });
 
     test('Todo should toggle completion status', () {
-      final todo = Todo(
-        id: '1',
-        title: 'Test',
-        createdAt: DateTime.now(),
-        isCompleted: false,
-      );
+      final todo = Todo(id: '1', title: 'Test', createdAt: DateTime.now());
 
       final completedTodo = todo.copyWith(isCompleted: true);
 

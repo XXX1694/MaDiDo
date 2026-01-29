@@ -6,9 +6,8 @@ import 'package:to_do/features/todo/domain/repositories/todo_repository.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
 
 class TodoRepositoryImpl implements TodoRepository {
-  final TodoLocalDataSource localDataSource;
-
   TodoRepositoryImpl({required this.localDataSource});
+  final TodoLocalDataSource localDataSource;
 
   @override
   Stream<List<Todo>> watchTodos({

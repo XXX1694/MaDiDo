@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
-import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
 import 'package:to_do/features/todo/domain/entities/todo_category.dart';
+import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
 
 extension TodoX on Todo {
   bool get isOverdue {

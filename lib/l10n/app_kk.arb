@@ -29,5 +29,11 @@
     "addDeadline": "Мерзім қосу",
     "deadline": "Мерзім",
     "clearAll": "Барлығын тазалау",
-    "filters": "Сүзгілер"
+    "filters": "Сүзгілер",
+    "appTitle": "TaskFlow",
+    "sortBy": "Сұрыптау",
+    "dateCreated": "Жасалған күні",
+    "alphabetical": "Ә-Я",
+    "priority": "Басымдық",
+    "category": "Санат"
 }

@@ -1,5 +1,5 @@
-import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/entities/sort_option.dart';
+import 'package:to_do/features/todo/domain/entities/todo.dart';
 
 class TodoSorter {
   static List<Todo> sort(List<Todo> todos, SortOption sortOption) {

@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
+import 'package:to_do/features/todo/domain/factories/todo_factory.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_event.dart';
 import 'package:to_do/features/todo/presentation/widgets/add_todo/add_todo_header.dart';
@@ -14,8 +15,6 @@ import 'package:to_do/features/todo/presentation/widgets/add_todo/add_todo_prior
 import 'package:to_do/features/todo/presentation/widgets/add_todo/add_todo_category_picker.dart';
 import 'package:to_do/features/todo/presentation/widgets/add_todo/add_todo_save_button.dart';
 import 'package:to_do/l10n/generated/app_localizations.dart';
-import 'package:uuid/uuid.dart';
-
 import 'package:to_do/core/utils/date_time_utils.dart';
 
 class AddTodoSheet extends StatefulWidget {
@@ -68,11 +67,10 @@ class _AddTodoSheetState extends State<AddTodoSheet> {
     if (widget.todo != null) {
       context.read<TodoBloc>().add(
         TodoUpdated(
-          widget.todo!.copyWith(
-            title: _titleController.text.trim(),
-            description: _descriptionController.text.trim().isEmpty
-                ? null
-                : _descriptionController.text.trim(),
+          TodoFactory.update(
+            original: widget.todo!,
+            title: _titleController.text,
+            description: _descriptionController.text,
             deadline: _deadline,
             priority: _priority,
             categoryId: _categoryId,
@@ -82,13 +80,9 @@ class _AddTodoSheetState extends State<AddTodoSheet> {
     } else {
       context.read<TodoBloc>().add(
         TodoAdded(
-          Todo(
-            id: const Uuid().v4(),
-            title: _titleController.text.trim(),
-            description: _descriptionController.text.trim().isEmpty
-                ? null
-                : _descriptionController.text.trim(),
-            createdAt: DateTime.now(),
+          TodoFactory.create(
+            title: _titleController.text,
+            description: _descriptionController.text,
             deadline: _deadline,
             priority: _priority,
             categoryId: _categoryId,
@@ -152,7 +146,7 @@ class _AddTodoSheetState extends State<AddTodoSheet> {
             onTap: _pickDeadline,
             onClear: () => setState(() => _deadline = null),
             isDark: isDark,
-            label: 'Deadline',
+            label: l10n.deadline,
             hintText: l10n.addDeadline,
           ),
           const Gap(24),
@@ -160,14 +154,14 @@ class _AddTodoSheetState extends State<AddTodoSheet> {
             selectedPriority: _priority,
             onSelected: (p) => setState(() => _priority = p),
             isDark: isDark,
-            label: 'Priority',
+            label: l10n.priority,
           ),
           const Gap(24),
           AddTodoCategoryPicker(
             selectedCategoryId: _categoryId,
             onSelected: (id) => setState(() => _categoryId = id),
             isDark: isDark,
-            label: 'Category',
+            label: l10n.category,
           ),
           const Gap(32),
           AddTodoSaveButton(

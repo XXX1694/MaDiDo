@@ -5,13 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class AddTodoDeadlinePicker extends StatelessWidget {
-  final DateTime? deadline;
-  final VoidCallback onTap;
-  final VoidCallback onClear;
-  final bool isDark;
-  final String label;
-  final String hintText;
-
   const AddTodoDeadlinePicker({
     super.key,
     required this.deadline,
@@ -21,6 +14,12 @@ class AddTodoDeadlinePicker extends StatelessWidget {
     required this.label,
     required this.hintText,
   });
+  final DateTime? deadline;
+  final VoidCallback onTap;
+  final VoidCallback onClear;
+  final bool isDark;
+  final String label;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {

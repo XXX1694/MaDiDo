@@ -3,6 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:to_do/core/services/notification_service.dart';
+import 'package:to_do/features/settings/data/repositories/settings_repository.dart';
 import 'package:to_do/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:to_do/features/todo/data/datasources/todo_local_datasource.dart';
 
@@ -43,8 +44,13 @@ Future<void> init() async {
   final prefs = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => prefs);
 
+  // Settings Repository
+  sl.registerLazySingleton<SettingsRepository>(
+    () => SettingsRepositoryImpl(sl()),
+  );
+
   // Services
-  sl.registerLazySingleton(() => NotificationService());
+  sl.registerLazySingleton(NotificationService.new);
   await sl<NotificationService>().init();
   await sl<NotificationService>().requestPermissions();
 
@@ -57,5 +63,5 @@ Future<void> init() async {
       deleteTodoUseCase: sl(),
     ),
   );
-  sl.registerFactory(() => SettingsBloc(prefs: sl()));
+  sl.registerFactory(() => SettingsBloc(repository: sl()));
 }

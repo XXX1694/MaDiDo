@@ -1,15 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 class TodoCategory extends Equatable {
-  final String id;
-  final String name;
-  final int colorValue; // ARGB int
+  // ARGB int
 
   const TodoCategory({
     required this.id,
     required this.name,
     required this.colorValue,
   });
+  final String id;
+  final String name;
+  final int colorValue;
 
   @override
   List<Object?> get props => [id, name, colorValue];

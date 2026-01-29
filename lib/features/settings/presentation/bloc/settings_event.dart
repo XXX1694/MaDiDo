@@ -10,15 +10,15 @@ class SettingsEvent extends Equatable {
 class LoadSettings extends SettingsEvent {}
 
 class ChangeTheme extends SettingsEvent {
-  final ThemeMode themeMode;
   const ChangeTheme(this.themeMode);
+  final ThemeMode themeMode;
   @override
   List<Object?> get props => [themeMode];
 }
 
 class ChangeLocale extends SettingsEvent {
-  final Locale locale;
   const ChangeLocale(this.locale);
+  final Locale locale;
   @override
   List<Object?> get props => [locale];
 }

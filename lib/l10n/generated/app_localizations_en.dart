@@ -97,4 +97,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get filters => 'Filters';
+
+  @override
+  String get appTitle => 'TaskFlow';
+
+  @override
+  String get sortBy => 'Sort by';
+
+  @override
+  String get dateCreated => 'Date Created';
+
+  @override
+  String get alphabetical => 'A-Z';
+
+  @override
+  String get priority => 'Priority';
+
+  @override
+  String get category => 'Category';
 }

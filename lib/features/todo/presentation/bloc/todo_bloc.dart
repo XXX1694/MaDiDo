@@ -10,13 +10,6 @@ import 'package:to_do/features/todo/presentation/bloc/todo_state.dart';
 import 'package:to_do/features/todo/presentation/utils/todo_sorter.dart';
 
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
-  final WatchTodosUseCase watchTodosUseCase;
-  final AddTodoUseCase addTodoUseCase;
-  final UpdateTodoUseCase updateTodoUseCase;
-  final DeleteTodoUseCase deleteTodoUseCase;
-
-  StreamSubscription<List<Todo>>? _todosSubscription;
-
   TodoBloc({
     required this.watchTodosUseCase,
     required this.addTodoUseCase,
@@ -32,6 +25,12 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     on<TodoDeleted>(_onTodoDeleted);
     on<TodosSortChanged>(_onSortChanged);
   }
+  final WatchTodosUseCase watchTodosUseCase;
+  final AddTodoUseCase addTodoUseCase;
+  final UpdateTodoUseCase updateTodoUseCase;
+  final DeleteTodoUseCase deleteTodoUseCase;
+
+  StreamSubscription<List<Todo>>? _todosSubscription;
 
   @override
   Future<void> close() {

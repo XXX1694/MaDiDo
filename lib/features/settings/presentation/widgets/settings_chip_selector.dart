@@ -4,16 +4,15 @@ import 'package:gap/gap.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class SettingsChipSelector<T> extends StatelessWidget {
-  final List<SettingsChipItem<T>> items;
-  final T selectedValue;
-  final ValueChanged<T> onSelected;
-
   const SettingsChipSelector({
     super.key,
     required this.items,
     required this.selectedValue,
     required this.onSelected,
   });
+  final List<SettingsChipItem<T>> items;
+  final T selectedValue;
+  final ValueChanged<T> onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +39,14 @@ class SettingsChipSelector<T> extends StatelessWidget {
                         ? AppColors.primaryGradient
                         : LinearGradient(
                             colors: [
-                              isDark
-                                  ? Colors.white.withValues(alpha: 0.05)
-                                  : AppColors.inputBackgroundLight,
-                              isDark
-                                  ? Colors.white.withValues(alpha: 0.05)
-                                  : AppColors.inputBackgroundLight,
+                              if (isDark)
+                                Colors.white.withValues(alpha: 0.05)
+                              else
+                                AppColors.inputBackgroundLight,
+                              if (isDark)
+                                Colors.white.withValues(alpha: 0.05)
+                              else
+                                AppColors.inputBackgroundLight,
                             ],
                           ),
                     shape: RoundedRectangleBorder(
@@ -105,9 +106,8 @@ class SettingsChipSelector<T> extends StatelessWidget {
 }
 
 class SettingsChipItem<T> {
+  SettingsChipItem({required this.value, required this.label, this.icon});
   final T value;
   final String label;
   final IconData? icon;
-
-  SettingsChipItem({required this.value, required this.label, this.icon});
 }

@@ -50,10 +50,7 @@ class ActiveFiltersBar extends StatelessWidget {
                       .name,
                   icon: Icons.category_rounded,
                   onRemove: () => context.read<TodoBloc>().add(
-                    TodosFilterChanged(
-                      categoryId: null,
-                      priority: state.filterPriority,
-                    ),
+                    TodosFilterChanged(priority: state.filterPriority),
                   ),
                   isDark: isDark,
                 ),
@@ -62,10 +59,7 @@ class ActiveFiltersBar extends StatelessWidget {
                   label: _getPriorityLabel(state.filterPriority!),
                   icon: Icons.flag_rounded,
                   onRemove: () => context.read<TodoBloc>().add(
-                    TodosFilterChanged(
-                      categoryId: state.filterCategoryId,
-                      priority: null,
-                    ),
+                    TodosFilterChanged(categoryId: state.filterCategoryId),
                   ),
                   isDark: isDark,
                 ),
@@ -102,17 +96,16 @@ class ActiveFiltersBar extends StatelessWidget {
 }
 
 class _FilterChip extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final VoidCallback onRemove;
-  final bool isDark;
-
   const _FilterChip({
     required this.label,
     required this.icon,
     required this.onRemove,
     required this.isDark,
   });
+  final String label;
+  final IconData icon;
+  final VoidCallback onRemove;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {

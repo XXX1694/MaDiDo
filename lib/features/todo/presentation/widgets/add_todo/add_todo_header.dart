@@ -3,16 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class AddTodoHeader extends StatelessWidget {
-  final String title;
-  final VoidCallback onClose;
-  final bool isDark;
-
   const AddTodoHeader({
     super.key,
     required this.title,
     required this.onClose,
     required this.isDark,
   });
+  final String title;
+  final VoidCallback onClose;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {

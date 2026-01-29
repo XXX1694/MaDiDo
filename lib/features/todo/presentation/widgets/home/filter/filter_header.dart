@@ -4,11 +4,6 @@ import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class FilterHeader extends StatelessWidget {
-  final String title;
-  final bool showClearButton;
-  final VoidCallback onClearAll;
-  final bool isDark;
-
   const FilterHeader({
     super.key,
     required this.title,
@@ -16,6 +11,10 @@ class FilterHeader extends StatelessWidget {
     required this.onClearAll,
     required this.isDark,
   });
+  final String title;
+  final bool showClearButton;
+  final VoidCallback onClearAll;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {

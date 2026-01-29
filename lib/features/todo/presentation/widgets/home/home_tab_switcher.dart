@@ -4,12 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class HomeTabSwitcher extends StatelessWidget {
-  final int currentIndex;
-  final ValueChanged<int> onTabChanged;
-  final String leftLabel;
-  final String rightLabel;
-  final bool isDark;
-
   const HomeTabSwitcher({
     super.key,
     required this.currentIndex,
@@ -18,6 +12,11 @@ class HomeTabSwitcher extends StatelessWidget {
     required this.rightLabel,
     required this.isDark,
   });
+  final int currentIndex;
+  final ValueChanged<int> onTabChanged;
+  final String leftLabel;
+  final String rightLabel;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
@@ -94,17 +93,16 @@ class HomeTabSwitcher extends StatelessWidget {
 }
 
 class _HomeTabButton extends StatelessWidget {
-  final String label;
-  final bool isActive;
-  final VoidCallback onTap;
-  final bool isDark;
-
   const _HomeTabButton({
     required this.label,
     required this.isActive,
     required this.onTap,
     required this.isDark,
   });
+  final String label;
+  final bool isActive;
+  final VoidCallback onTap;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {

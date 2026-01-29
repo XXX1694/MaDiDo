@@ -10,6 +10,7 @@ import 'package:to_do/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_event.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_state.dart';
 import 'package:to_do/features/todo/presentation/widgets/filter_todo_sheet.dart';
+import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class HomeHeader extends StatelessWidget {
   final bool isDark;
@@ -18,6 +19,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SafeArea(
       bottom: false,
       child: Padding(
@@ -26,7 +28,7 @@ class HomeHeader extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'TaskFlow',
+                l10n.appTitle,
                 style: GoogleFonts.inter(
                   fontSize: 32,
                   fontWeight: FontWeight.w800,
@@ -162,6 +164,7 @@ class _HomeSortMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<TodoBloc, TodoState>(
       buildWhen: (previous, current) =>
           previous.sortOption != current.sortOption,
@@ -214,7 +217,7 @@ class _HomeSortMenu extends StatelessWidget {
               ],
             ),
           ),
-          tooltip: 'Sort by',
+          tooltip: l10n.sortBy,
           initialValue: state.sortOption,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
@@ -228,28 +231,28 @@ class _HomeSortMenu extends StatelessWidget {
           itemBuilder: (context) => [
             _buildSortMenuItem(
               icon: Icons.access_time_rounded,
-              label: 'Date Created',
+              label: l10n.dateCreated,
               value: SortOption.createdAt,
               isSelected: state.sortOption == SortOption.createdAt,
               isDark: isDark,
             ),
             _buildSortMenuItem(
               icon: Icons.calendar_today_rounded,
-              label: 'Deadline',
+              label: l10n.deadline,
               value: SortOption.deadline,
               isSelected: state.sortOption == SortOption.deadline,
               isDark: isDark,
             ),
             _buildSortMenuItem(
               icon: Icons.sort_by_alpha_rounded,
-              label: 'A-Z',
+              label: l10n.alphabetical,
               value: SortOption.alphabetical,
               isSelected: state.sortOption == SortOption.alphabetical,
               isDark: isDark,
             ),
             _buildSortMenuItem(
               icon: Icons.flag_rounded,
-              label: 'Priority',
+              label: l10n.priority,
               value: SortOption.priority,
               isSelected: state.sortOption == SortOption.priority,
               isDark: isDark,

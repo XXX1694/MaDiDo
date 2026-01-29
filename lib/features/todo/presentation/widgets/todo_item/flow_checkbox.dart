@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class FlowCheckbox extends StatelessWidget {
-  final bool isChecked;
-  final VoidCallback onTap;
-  final bool isDark;
-
   const FlowCheckbox({
     super.key,
     required this.isChecked,
     required this.onTap,
     required this.isDark,
   });
+  final bool isChecked;
+  final VoidCallback onTap;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class FlowCheckbox extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: AnimatedScale(
           scale: isChecked ? 1.05 : 1.0,
           duration: const Duration(milliseconds: 150),

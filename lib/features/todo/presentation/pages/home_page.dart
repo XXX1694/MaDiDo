@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:to_do/core/theme/app_colors.dart';
+import 'package:to_do/features/todo/presentation/widgets/home/active_filters_bar.dart';
+import 'package:to_do/features/todo/presentation/widgets/home/home_fab.dart';
 import 'package:to_do/features/todo/presentation/widgets/home/home_header.dart';
 import 'package:to_do/features/todo/presentation/widgets/home/home_tab_switcher.dart';
-import 'package:to_do/features/todo/presentation/widgets/home/home_fab.dart';
 import 'package:to_do/features/todo/presentation/widgets/home/todo_list_view.dart';
-import 'package:to_do/features/todo/presentation/widgets/home/active_filters_bar.dart';
 import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class HomePage extends StatefulWidget {

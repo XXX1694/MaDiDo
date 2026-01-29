@@ -4,11 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class EmptyTodoView extends StatelessWidget {
-  final bool filterCompleted;
-  final String title;
-  final String? subtitle;
-  final bool isDark;
-
   const EmptyTodoView({
     super.key,
     required this.filterCompleted,
@@ -16,6 +11,10 @@ class EmptyTodoView extends StatelessWidget {
     this.subtitle,
     required this.isDark,
   });
+  final bool filterCompleted;
+  final String title;
+  final String? subtitle;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {

@@ -11,12 +11,6 @@ import 'package:to_do/features/todo/presentation/widgets/todo_item/todo_item_tag
 import 'package:to_do/features/todo/presentation/widgets/todo_item/todo_item_swipe_background.dart';
 
 class TodoItem extends StatefulWidget {
-  final Todo todo;
-  final ValueChanged<bool> onToggle;
-  final VoidCallback onDelete;
-  final VoidCallback onEdit;
-  final VoidCallback onPin;
-
   const TodoItem({
     super.key,
     required this.todo,
@@ -25,6 +19,11 @@ class TodoItem extends StatefulWidget {
     required this.onEdit,
     required this.onPin,
   });
+  final Todo todo;
+  final ValueChanged<bool> onToggle;
+  final VoidCallback onDelete;
+  final VoidCallback onEdit;
+  final VoidCallback onPin;
 
   @override
   State<TodoItem> createState() => _TodoItemState();
@@ -45,16 +44,16 @@ class _TodoItemState extends State<TodoItem>
       vsync: this,
       duration: const Duration(milliseconds: 400),
     );
-    _opacityAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
+    _opacityAnimation = Tween<double>(begin: 1, end: 0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
+        curve: const Interval(0, 0.5, curve: Curves.easeOut),
       ),
     );
-    _sizeAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
+    _sizeAnimation = Tween<double>(begin: 1, end: 0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+        curve: const Interval(0.5, 1, curve: Curves.easeOut),
       ),
     );
   }
@@ -91,10 +90,9 @@ class _TodoItemState extends State<TodoItem>
           opacity: _opacityAnimation,
           child: SizeTransition(
             sizeFactor: _sizeAnimation,
-            axisAlignment: -1.0,
+            axisAlignment: -1,
             child: Dismissible(
               key: Key(widget.todo.id),
-              direction: DismissDirection.horizontal,
               resizeDuration: const Duration(milliseconds: 200),
               background: const TodoItemSwipeBackground(isRightSwipe: false),
               secondaryBackground: const TodoItemSwipeBackground(

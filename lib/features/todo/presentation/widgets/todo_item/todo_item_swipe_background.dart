@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class TodoItemSwipeBackground extends StatelessWidget {
-  final bool
-  isRightSwipe; // true for Delete (right to left), false for Pin (left to right)
+  // true for Delete (right to left), false for Pin (left to right)
 
   const TodoItemSwipeBackground({super.key, required this.isRightSwipe});
+  final bool isRightSwipe;
 
   @override
   Widget build(BuildContext context) {

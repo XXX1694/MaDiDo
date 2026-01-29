@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
+import 'package:to_do/core/theme/flow_colors.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
@@ -70,6 +71,7 @@ class AppTheme {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),
+      extensions: const <ThemeExtension<dynamic>>[FlowColors.light],
     );
   }
 
@@ -141,6 +143,7 @@ class AppTheme {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),
+      extensions: const <ThemeExtension<dynamic>>[FlowColors.dark],
     );
   }
 }

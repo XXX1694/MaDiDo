@@ -33,7 +33,7 @@ class FilterTodoSheet extends StatelessWidget {
                     state.filterPriority != null,
                 onClearAll: () {
                   context.read<TodoBloc>().add(
-                    const TodosFilterChanged(categoryId: null, priority: null),
+                    const TodosFilterChanged(priority: null),
                   );
                 },
               ),

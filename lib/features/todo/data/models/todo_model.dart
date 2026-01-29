@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+import 'package:to_do/core/utils/hash_utils.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
 
@@ -51,19 +52,4 @@ class TodoModel {
       ..categoryId = todo.categoryId
       ..isPinned = todo.isPinned;
   }
-}
-
-int fastHash(String string) {
-  var hash = 0xcbf29ce484222325;
-
-  var i = 0;
-  while (i < string.length) {
-    final codeUnit = string.codeUnitAt(i++);
-    hash ^= codeUnit >> 8;
-    hash *= 0x100000001b3;
-    hash ^= codeUnit & 0xFF;
-    hash *= 0x100000001b3;
-  }
-
-  return hash;
 }

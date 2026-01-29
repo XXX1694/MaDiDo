@@ -3,16 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class AddTodoInputField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final int maxLines;
-  final int minLines;
-  final bool autofocus;
-  final TextInputAction? textInputAction;
-  final bool isDark;
-  final double fontSize;
-  final FontWeight fontWeight;
-
   const AddTodoInputField({
     super.key,
     required this.controller,
@@ -25,6 +15,15 @@ class AddTodoInputField extends StatelessWidget {
     this.fontSize = 15,
     this.fontWeight = FontWeight.w400,
   });
+  final TextEditingController controller;
+  final String hintText;
+  final int maxLines;
+  final int minLines;
+  final bool autofocus;
+  final TextInputAction? textInputAction;
+  final bool isDark;
+  final double fontSize;
+  final FontWeight fontWeight;
 
   @override
   Widget build(BuildContext context) {

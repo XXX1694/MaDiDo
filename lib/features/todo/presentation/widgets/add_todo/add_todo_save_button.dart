@@ -3,11 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class AddTodoSaveButton extends StatelessWidget {
-  final String label;
-  final bool isEnabled;
-  final VoidCallback onTap;
-  final bool isDark;
-
   const AddTodoSaveButton({
     super.key,
     required this.label,
@@ -15,6 +10,10 @@ class AddTodoSaveButton extends StatelessWidget {
     required this.onTap,
     required this.isDark,
   });
+  final String label;
+  final bool isEnabled;
+  final VoidCallback onTap;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {

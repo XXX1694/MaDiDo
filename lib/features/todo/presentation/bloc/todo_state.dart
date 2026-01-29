@@ -6,14 +6,6 @@ import 'package:to_do/features/todo/domain/entities/sort_option.dart';
 enum TodoStatus { initial, loading, success, failure }
 
 class TodoState extends Equatable {
-  final TodoStatus status;
-  final List<Todo> todos;
-  final SortOption sortOption;
-  final String? errorMessage;
-  final String? filterCategoryId;
-  final TodoPriority? filterPriority;
-  final bool? filterIsCompleted;
-
   const TodoState({
     this.status = TodoStatus.initial,
     this.todos = const [],
@@ -23,6 +15,13 @@ class TodoState extends Equatable {
     this.filterPriority,
     this.filterIsCompleted,
   });
+  final TodoStatus status;
+  final List<Todo> todos;
+  final SortOption sortOption;
+  final String? errorMessage;
+  final String? filterCategoryId;
+  final TodoPriority? filterPriority;
+  final bool? filterIsCompleted;
 
   Iterable<Todo> get pendingTodos => todos.where((todo) => !todo.isCompleted);
   Iterable<Todo> get completedTodos => todos.where((todo) => todo.isCompleted);

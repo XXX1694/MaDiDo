@@ -5,11 +5,6 @@ import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/domain/entities/todo_category.dart';
 
 class AddTodoCategoryPicker extends StatelessWidget {
-  final String? selectedCategoryId;
-  final ValueChanged<String?> onSelected;
-  final bool isDark;
-  final String label;
-
   const AddTodoCategoryPicker({
     super.key,
     required this.selectedCategoryId,
@@ -17,6 +12,10 @@ class AddTodoCategoryPicker extends StatelessWidget {
     required this.isDark,
     required this.label,
   });
+  final String? selectedCategoryId;
+  final ValueChanged<String?> onSelected;
+  final bool isDark;
+  final String label;
 
   @override
   Widget build(BuildContext context) {

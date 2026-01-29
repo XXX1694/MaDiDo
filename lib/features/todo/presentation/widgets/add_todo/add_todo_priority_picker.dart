@@ -5,11 +5,6 @@ import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
 
 class AddTodoPriorityPicker extends StatelessWidget {
-  final TodoPriority selectedPriority;
-  final ValueChanged<TodoPriority> onSelected;
-  final bool isDark;
-  final String label;
-
   const AddTodoPriorityPicker({
     super.key,
     required this.selectedPriority,
@@ -17,6 +12,10 @@ class AddTodoPriorityPicker extends StatelessWidget {
     required this.isDark,
     required this.label,
   });
+  final TodoPriority selectedPriority;
+  final ValueChanged<TodoPriority> onSelected;
+  final bool isDark;
+  final String label;
 
   @override
   Widget build(BuildContext context) {

@@ -279,6 +279,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Filters'**
   String get filters;
+
+  /// No description provided for @appTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'TaskFlow'**
+  String get appTitle;
+
+  /// No description provided for @sortBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get sortBy;
+
+  /// No description provided for @dateCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Date Created'**
+  String get dateCreated;
+
+  /// No description provided for @alphabetical.
+  ///
+  /// In en, this message translates to:
+  /// **'A-Z'**
+  String get alphabetical;
+
+  /// No description provided for @priority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get priority;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
 }
 
 class _AppLocalizationsDelegate
