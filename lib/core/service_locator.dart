@@ -3,6 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:to_do/core/services/notification_service.dart';
+import 'package:to_do/core/services/review_service.dart';
 import 'package:to_do/features/settings/data/repositories/settings_repository.dart';
 import 'package:to_do/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:to_do/features/todo/data/datasources/todo_local_datasource.dart';
@@ -50,15 +51,16 @@ Future<void> init() async {
     ..registerLazySingleton(NotificationService.new);
   await sl<NotificationService>().init();
   await sl<NotificationService>().requestPermissions();
-
-  // Blocs
   sl
+    ..registerLazySingleton(() => ReviewService(sl()))
+    // Blocs
     ..registerFactory(
       () => TodoBloc(
         watchTodosUseCase: sl(),
         addTodoUseCase: sl(),
         updateTodoUseCase: sl(),
         deleteTodoUseCase: sl(),
+        reviewService: sl(),
       ),
     )
     ..registerFactory(() => SettingsBloc(repository: sl()));

@@ -16,13 +16,13 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.abzal.to_do"
-    compileSdk = 35
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     defaultConfig {
         applicationId = "com.abzal.to_do"
         minSdk = flutter.minSdkVersion
-        targetSdk = 35
+        targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true

@@ -14,6 +14,7 @@ class TodoState extends Equatable {
     this.filterCategoryId,
     this.filterPriority,
     this.filterIsCompleted,
+    this.showReviewDialog = false,
   });
   final TodoStatus status;
   final List<Todo> todos;
@@ -22,6 +23,7 @@ class TodoState extends Equatable {
   final String? filterCategoryId;
   final TodoPriority? filterPriority;
   final bool? filterIsCompleted;
+  final bool showReviewDialog;
 
   Iterable<Todo> get pendingTodos => todos.where((todo) => !todo.isCompleted);
   Iterable<Todo> get completedTodos => todos.where((todo) => todo.isCompleted);
@@ -37,6 +39,7 @@ class TodoState extends Equatable {
     bool clearFilterCategoryId = false,
     bool clearFilterPriority = false,
     bool clearFilterIsCompleted = false,
+    bool? showReviewDialog,
   }) {
     return TodoState(
       status: status ?? this.status,
@@ -52,6 +55,7 @@ class TodoState extends Equatable {
       filterIsCompleted: clearFilterIsCompleted
           ? null
           : (filterIsCompleted ?? this.filterIsCompleted),
+      showReviewDialog: showReviewDialog ?? this.showReviewDialog,
     );
   }
 
@@ -64,5 +68,6 @@ class TodoState extends Equatable {
     filterCategoryId,
     filterPriority,
     filterIsCompleted,
+    showReviewDialog,
   ];
 }

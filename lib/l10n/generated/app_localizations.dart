@@ -100,221 +100,257 @@ abstract class AppLocalizations {
     Locale('ru'),
   ];
 
-  /// No description provided for @myTasks.
+  /// Title for the main tasks screen
   ///
   /// In en, this message translates to:
   /// **'My Tasks'**
   String get myTasks;
 
-  /// No description provided for @toDo.
+  /// Label for the pending tasks tab
   ///
   /// In en, this message translates to:
   /// **'To Do'**
   String get toDo;
 
-  /// No description provided for @done.
+  /// Label for the completed tasks tab
   ///
   /// In en, this message translates to:
   /// **'Done'**
   String get done;
 
-  /// No description provided for @noCompletedTasks.
+  /// Empty state message for completed tasks tab
   ///
   /// In en, this message translates to:
   /// **'No completed tasks yet'**
   String get noCompletedTasks;
 
-  /// No description provided for @noPendingTasks.
+  /// Empty state message for pending tasks tab
   ///
   /// In en, this message translates to:
   /// **'You have no tasks to do'**
   String get noPendingTasks;
 
-  /// No description provided for @tapToCreate.
+  /// Hint for creating a new task
   ///
   /// In en, this message translates to:
   /// **'Tap + to create a new task'**
   String get tapToCreate;
 
-  /// No description provided for @newTask.
+  /// Title for the new task creation screen
   ///
   /// In en, this message translates to:
   /// **'New Task'**
   String get newTask;
 
-  /// No description provided for @whatNeedsToBeDone.
+  /// Placeholder for task title input
   ///
   /// In en, this message translates to:
   /// **'What needs to be done?'**
   String get whatNeedsToBeDone;
 
-  /// No description provided for @descriptionOptional.
+  /// Placeholder for task description input
   ///
   /// In en, this message translates to:
   /// **'Description (optional)'**
   String get descriptionOptional;
 
-  /// No description provided for @createTask.
+  /// Label for the create task button
   ///
   /// In en, this message translates to:
   /// **'Create Task'**
   String get createTask;
 
-  /// No description provided for @settings.
+  /// Title for the settings screen
   ///
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
 
-  /// No description provided for @general.
+  /// Section header for general settings
   ///
   /// In en, this message translates to:
   /// **'General'**
   String get general;
 
-  /// No description provided for @language.
+  /// Label for the language selection setting
   ///
   /// In en, this message translates to:
   /// **'Language'**
   String get language;
 
-  /// No description provided for @appearance.
+  /// Section header for appearance settings
   ///
   /// In en, this message translates to:
   /// **'Appearance'**
   String get appearance;
 
-  /// No description provided for @theme.
+  /// Label for the theme selection setting
   ///
   /// In en, this message translates to:
   /// **'Theme'**
   String get theme;
 
-  /// No description provided for @system.
+  /// Option for system theme
   ///
   /// In en, this message translates to:
   /// **'System'**
   String get system;
 
-  /// No description provided for @light.
+  /// Option for light theme
   ///
   /// In en, this message translates to:
   /// **'Light'**
   String get light;
 
-  /// No description provided for @dark.
+  /// Option for dark theme
   ///
   /// In en, this message translates to:
   /// **'Dark'**
   String get dark;
 
-  /// No description provided for @delete.
+  /// Label for delete action
   ///
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
 
-  /// No description provided for @editTask.
+  /// Title for the edit task screen
   ///
   /// In en, this message translates to:
   /// **'Edit Task'**
   String get editTask;
 
-  /// No description provided for @saveChanges.
+  /// Label for the save changes button
   ///
   /// In en, this message translates to:
   /// **'Save Changes'**
   String get saveChanges;
 
-  /// No description provided for @english.
+  /// Name of the English language
   ///
   /// In en, this message translates to:
   /// **'English'**
   String get english;
 
-  /// No description provided for @russian.
+  /// Name of the Russian language
   ///
   /// In en, this message translates to:
   /// **'Russian'**
   String get russian;
 
-  /// No description provided for @kazakh.
+  /// Name of the Kazakh language
   ///
   /// In en, this message translates to:
   /// **'Kazakh'**
   String get kazakh;
 
-  /// No description provided for @taskDeleted.
+  /// Message shown when a task is deleted
   ///
   /// In en, this message translates to:
   /// **'Task deleted'**
   String get taskDeleted;
 
-  /// No description provided for @undo.
+  /// Label for undo action
   ///
   /// In en, this message translates to:
   /// **'Undo'**
   String get undo;
 
-  /// No description provided for @addDeadline.
+  /// Label for adding a deadline to a task
   ///
   /// In en, this message translates to:
   /// **'Add deadline'**
   String get addDeadline;
 
-  /// No description provided for @deadline.
+  /// Label for task deadline
   ///
   /// In en, this message translates to:
   /// **'Deadline'**
   String get deadline;
 
-  /// No description provided for @clearAll.
+  /// Label for clearing all filters
   ///
   /// In en, this message translates to:
   /// **'Clear All'**
   String get clearAll;
 
-  /// No description provided for @filters.
+  /// Label for filters section
   ///
   /// In en, this message translates to:
   /// **'Filters'**
   String get filters;
 
-  /// No description provided for @appTitle.
+  /// The title of the application
   ///
   /// In en, this message translates to:
   /// **'TaskFlow'**
   String get appTitle;
 
-  /// No description provided for @sortBy.
+  /// Label for sorting options
   ///
   /// In en, this message translates to:
   /// **'Sort by'**
   String get sortBy;
 
-  /// No description provided for @dateCreated.
+  /// Option for sorting by creation date
   ///
   /// In en, this message translates to:
   /// **'Date Created'**
   String get dateCreated;
 
-  /// No description provided for @alphabetical.
+  /// Option for alphabetical sorting
   ///
   /// In en, this message translates to:
   /// **'A-Z'**
   String get alphabetical;
 
-  /// No description provided for @priority.
+  /// Option for sorting by priority
   ///
   /// In en, this message translates to:
   /// **'Priority'**
   String get priority;
 
-  /// No description provided for @category.
+  /// Option for sorting by category
   ///
   /// In en, this message translates to:
   /// **'Category'**
   String get category;
+
+  /// Title for the review dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoying the app?'**
+  String get reviewTitle;
+
+  /// Description for the review dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Your feedback helps us make the app better for everyone.'**
+  String get reviewDescription;
+
+  /// Button label for positive review
+  ///
+  /// In en, this message translates to:
+  /// **'I love it!'**
+  String get reviewLoveIt;
+
+  /// Button label for constructive feedback
+  ///
+  /// In en, this message translates to:
+  /// **'Needs improvement'**
+  String get reviewNeedsImprovement;
+
+  /// Button label for postponing review
+  ///
+  /// In en, this message translates to:
+  /// **'Later'**
+  String get reviewLater;
+
+  /// Message shown after submitting feedback
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for your feedback!'**
+  String get thanksForFeedback;
 }
 
 class _AppLocalizationsDelegate

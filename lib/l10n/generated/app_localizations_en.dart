@@ -115,4 +115,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get category => 'Category';
+
+  @override
+  String get reviewTitle => 'Enjoying the app?';
+
+  @override
+  String get reviewDescription =>
+      'Your feedback helps us make the app better for everyone.';
+
+  @override
+  String get reviewLoveIt => 'I love it!';
+
+  @override
+  String get reviewNeedsImprovement => 'Needs improvement';
+
+  @override
+  String get reviewLater => 'Later';
+
+  @override
+  String get thanksForFeedback => 'Thank you for your feedback!';
 }

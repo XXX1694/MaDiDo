@@ -115,4 +115,23 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get category => 'Категория';
+
+  @override
+  String get reviewTitle => 'Вам нравится приложение?';
+
+  @override
+  String get reviewDescription =>
+      'Ваш отзыв поможет нам сделать приложение ещё лучше.';
+
+  @override
+  String get reviewLoveIt => 'Обожаю!';
+
+  @override
+  String get reviewNeedsImprovement => 'Нужны улучшения';
+
+  @override
+  String get reviewLater => 'Позже';
+
+  @override
+  String get thanksForFeedback => 'Спасибо за ваш отзыв!';
 }

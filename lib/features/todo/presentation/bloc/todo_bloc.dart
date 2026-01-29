@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do/core/services/review_service.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/usecases/add_todo_usecase.dart';
 import 'package:to_do/features/todo/domain/usecases/delete_todo_usecase.dart';
@@ -15,6 +17,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     required this.addTodoUseCase,
     required this.updateTodoUseCase,
     required this.deleteTodoUseCase,
+    required this.reviewService,
   }) : super(const TodoState()) {
     on<TodosSubscriptionRequested>(_onSubscriptionRequested);
     on<TodosListUpdated>(_onTodosListUpdated);
@@ -24,11 +27,13 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     on<TodoCompletionToggled>(_onTodoCompletionToggled);
     on<TodoDeleted>(_onTodoDeleted);
     on<TodosSortChanged>(_onSortChanged);
+    on<TodoCompletionAnimationFinished>(_onTodoCompletionAnimationFinished);
   }
   final WatchTodosUseCase watchTodosUseCase;
   final AddTodoUseCase addTodoUseCase;
   final UpdateTodoUseCase updateTodoUseCase;
   final DeleteTodoUseCase deleteTodoUseCase;
+  final ReviewService reviewService;
 
   StreamSubscription<List<Todo>>? _todosSubscription;
 
@@ -95,7 +100,17 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   }
 
   Future<void> _onTodoAdded(TodoAdded event, Emitter<TodoState> emit) async {
-    await addTodoUseCase(event.todo);
+    // Optimistically add to list
+    final updatedTodos = List<Todo>.from(state.todos)..add(event.todo);
+    // Sort the list properly after adding
+    final sortedTodos = TodoSorter.sort(updatedTodos, state.sortOption);
+    emit(state.copyWith(todos: sortedTodos));
+
+    try {
+      await addTodoUseCase(event.todo);
+    } catch (e) {
+      // Revert if needed, though subscription will handle it
+    }
   }
 
   Future<void> _onTodoCompletionToggled(
@@ -104,6 +119,9 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   ) async {
     final newTodo = event.todo.copyWith(isCompleted: event.isCompleted);
     await updateTodoUseCase(newTodo);
+    if (event.isCompleted) {
+      await reviewService.incrementCompletedTasks();
+    }
   }
 
   Future<void> _onTodoUpdated(
@@ -117,6 +135,33 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     TodoDeleted event,
     Emitter<TodoState> emit,
   ) async {
-    await deleteTodoUseCase(event.id);
+    // Optimistically remove from list to avoid Dismissible error
+    final updatedTodos = state.todos
+        .where((todo) => todo.id != event.id)
+        .toList();
+    emit(state.copyWith(todos: updatedTodos));
+
+    try {
+      await deleteTodoUseCase(event.id);
+    } catch (e) {
+      // If error occurs, the subscription will restore the real state,
+      // but we could also emit an error state here if needed.
+    }
+  }
+
+  Future<void> _onTodoCompletionAnimationFinished(
+    TodoCompletionAnimationFinished event,
+    Emitter<TodoState> emit,
+  ) async {
+    // If the flag is already true, this event resets it back to false
+    // after the UI has seen it.
+    if (state.showReviewDialog) {
+      emit(state.copyWith(showReviewDialog: false));
+    } else {
+      // Logic from _checkReview moved here conceptually
+      if (await reviewService.shouldShowReview()) {
+        emit(state.copyWith(showReviewDialog: true));
+      }
+    }
   }
 }

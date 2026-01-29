@@ -70,3 +70,7 @@ class TodosListUpdated extends TodoEvent {
   @override
   List<Object?> get props => [todos];
 }
+
+class TodoCompletionAnimationFinished extends TodoEvent {
+  const TodoCompletionAnimationFinished();
+}

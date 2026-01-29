@@ -1,39 +1,171 @@
 {
     "@@locale": "kk",
     "myTasks": "Менің тапсырмаларым",
+    "@myTasks": {
+        "description": "Менің тапсырмаларым экранының тақырыбы"
+    },
     "toDo": "Орындау керек",
+    "@toDo": {
+        "description": "Орындалмаған тапсырмалар қойындысы"
+    },
     "done": "Орындалды",
+    "@done": {
+        "description": "Орындалған тапсырмалар қойындысы"
+    },
     "noCompletedTasks": "Орындалған тапсырмалар жоқ",
-    "noPendingTasks": "Тапсырмалар жоқ",
-    "tapToCreate": "Тапсырма құру үшін + басыңыз",
+    "@noCompletedTasks": {
+        "description": "Орындалған тапсырмалар болмаған кездегі хабарлама"
+    },
+    "noPendingTasks": "Орындайтын тапсырмалар жоқ",
+    "@noPendingTasks": {
+        "description": "Орындайтын тапсырмалар болмаған кездегі хабарлама"
+    },
+    "tapToCreate": "Тапсырма жасау үшін + басыңыз",
+    "@tapToCreate": {
+        "description": "Тапсырма жасау туралы нұсқау"
+    },
     "newTask": "Жаңа тапсырма",
+    "@newTask": {
+        "description": "Жаңа тапсырма жасау экранының тақырыбы"
+    },
     "whatNeedsToBeDone": "Не істеу керек?",
+    "@whatNeedsToBeDone": {
+        "description": "Тапсырма атауын енгізу өрісіндегі нұсқау"
+    },
     "descriptionOptional": "Сипаттама (міндетті емес)",
-    "createTask": "Тапсырма құру",
-    "settings": "Баптаулар",
-    "general": "Негізгі",
+    "@descriptionOptional": {
+        "description": "Сипаттама енгізу өрісіндегі нұсқау"
+    },
+    "createTask": "Тапсырма жасау",
+    "@createTask": {
+        "description": "Тапсырма жасау батырмасының мәтіні"
+    },
+    "settings": "Параметрлер",
+    "@settings": {
+        "description": "Параметрлер экранының тақырыбы"
+    },
+    "general": "Жалпы",
+    "@general": {
+        "description": "Жалпы параметрлер бөлімінің тақырыбы"
+    },
     "language": "Тіл",
+    "@language": {
+        "description": "Тіл таңдау параметрі"
+    },
     "appearance": "Сыртқы түрі",
+    "@appearance": {
+        "description": "Сыртқы түрі бөлімінің тақырыбы"
+    },
     "theme": "Тақырып",
+    "@theme": {
+        "description": "Тақырып таңдау параметрі"
+    },
     "system": "Жүйелік",
+    "@system": {
+        "description": "Жүйелік тақырып"
+    },
     "light": "Жарық",
-    "dark": "Күңгірт",
-    "delete": "Жою",
+    "@light": {
+        "description": "Жарық тақырып"
+    },
+    "dark": "Қараңғы",
+    "@dark": {
+        "description": "Қараңғы тақырып"
+    },
+    "delete": "Өшіру",
+    "@delete": {
+        "description": "Өшіру әрекеті"
+    },
     "english": "Ағылшын",
+    "@english": {
+        "description": "Ағылшын тілінің атауы"
+    },
     "russian": "Орыс",
+    "@russian": {
+        "description": "Орыс тілінің атауы"
+    },
     "kazakh": "Қазақ",
+    "@kazakh": {
+        "description": "Қазақ тілінің атауы"
+    },
     "editTask": "Тапсырманы өңдеу",
+    "@editTask": {
+        "description": "Өңдеу экранының тақырыбы"
+    },
     "saveChanges": "Өзгерістерді сақтау",
-    "taskDeleted": "Тапсырма жойылды",
+    "@saveChanges": {
+        "description": "Сақтау батырмасының мәтіні"
+    },
+    "taskDeleted": "Тапсырма өшірілді",
+    "@taskDeleted": {
+        "description": "Тапсырма өшірілгені туралы хабарлама"
+    },
     "undo": "Болдырмау",
-    "addDeadline": "Мерзім қосу",
-    "deadline": "Мерзім",
+    "@undo": {
+        "description": "Болдырмау әрекеті"
+    },
+    "addDeadline": "Дедлайн қосу",
+    "@addDeadline": {
+        "description": "Орындалу мерзімін қосу"
+    },
+    "deadline": "Дедлайн",
+    "@deadline": {
+        "description": "Орындалу мерзімі"
+    },
     "clearAll": "Барлығын тазалау",
+    "@clearAll": {
+        "description": "Барлық сүзгілерді алып тастау"
+    },
     "filters": "Сүзгілер",
+    "@filters": {
+        "description": "Сүзгілер бөлімі"
+    },
     "appTitle": "TaskFlow",
+    "@appTitle": {
+        "description": "Қосымшаның атауы"
+    },
     "sortBy": "Сұрыптау",
-    "dateCreated": "Жасалған күні",
-    "alphabetical": "Ә-Я",
-    "priority": "Басымдық",
-    "category": "Санат"
+    "@sortBy": {
+        "description": "Сұрыптауды таңдау"
+    },
+    "dateCreated": "Жасалған күні бойынша",
+    "@dateCreated": {
+        "description": "Күні бойынша сұрыптау"
+    },
+    "alphabetical": "А-Я",
+    "@alphabetical": {
+        "description": "Әліпби бойынша сұрыптау"
+    },
+    "priority": "Маңыздылығы",
+    "@priority": {
+        "description": "Тапсырманың маңыздылығы"
+    },
+    "category": "Санат",
+    "@category": {
+        "description": "Тапсырманың санаты"
+    },
+    "reviewTitle": "Қосымша ұнай ма?",
+    "@reviewTitle": {
+        "description": "Бағалау диалогының тақырыбы"
+    },
+    "reviewDescription": "Сіздің пікіріңіз қосымшаны бұдан да жақсырақ етуге көмектеседі.",
+    "@reviewDescription": {
+        "description": "Бағалау диалогының сипаттамасы"
+    },
+    "reviewLoveIt": "Маған ұнайды!",
+    "@reviewLoveIt": {
+        "description": "Оң баға беру батырмасы"
+    },
+    "reviewNeedsImprovement": "Жақсарту керек",
+    "@reviewNeedsImprovement": {
+        "description": "Сын айту батырмасы"
+    },
+    "reviewLater": "Кейінірек",
+    "@reviewLater": {
+        "description": "Бағалауды кейінге қалдыру батырмасы"
+    },
+    "thanksForFeedback": "Пікіріңіз үшін рақмет!",
+    "@thanksForFeedback": {
+        "description": "Пікір үшін алғыс хабарламасы"
+    }
 }

@@ -1,39 +1,171 @@
 {
     "@@locale": "ru",
     "myTasks": "Мои задачи",
+    "@myTasks": {
+        "description": "Заголовок экрана моих задач"
+    },
     "toDo": "Сделать",
+    "@toDo": {
+        "description": "Вкладка невыполненных задач"
+    },
     "done": "Готово",
+    "@done": {
+        "description": "Вкладка выполненных задач"
+    },
     "noCompletedTasks": "Нет выполненных задач",
+    "@noCompletedTasks": {
+        "description": "Сообщение при отсутствии выполненных задач"
+    },
     "noPendingTasks": "Нет задач к выполнению",
+    "@noPendingTasks": {
+        "description": "Сообщение при отсутствии задач к выполнению"
+    },
     "tapToCreate": "Нажмите +, чтобы создать задачу",
+    "@tapToCreate": {
+        "description": "Подсказка для создания задачи"
+    },
     "newTask": "Новая задача",
+    "@newTask": {
+        "description": "Заголовок экрана создания задачи"
+    },
     "whatNeedsToBeDone": "Что нужно сделать?",
+    "@whatNeedsToBeDone": {
+        "description": "Подсказка в поле ввода названия задачи"
+    },
     "descriptionOptional": "Описание (необязательно)",
+    "@descriptionOptional": {
+        "description": "Подсказка в поле ввода описания"
+    },
     "createTask": "Создать задачу",
+    "@createTask": {
+        "description": "Текст на кнопке создания задачи"
+    },
     "settings": "Настройки",
+    "@settings": {
+        "description": "Заголовок экрана настроек"
+    },
     "general": "Общие",
+    "@general": {
+        "description": "Заголовок раздела общих настроек"
+    },
     "language": "Язык",
+    "@language": {
+        "description": "Настройка выбора языка"
+    },
     "appearance": "Внешний вид",
+    "@appearance": {
+        "description": "Заголовок раздела внешнего вида"
+    },
     "theme": "Тема",
+    "@theme": {
+        "description": "Настройка выбора темы"
+    },
     "system": "Системная",
+    "@system": {
+        "description": "Системная тема"
+    },
     "light": "Светлая",
+    "@light": {
+        "description": "Светлая тема"
+    },
     "dark": "Темная",
+    "@dark": {
+        "description": "Темная тема"
+    },
     "delete": "Удалить",
+    "@delete": {
+        "description": "Действие удаления"
+    },
     "editTask": "Редактировать задачу",
+    "@editTask": {
+        "description": "Заголовок экрана редактирования"
+    },
     "saveChanges": "Сохранить изменения",
+    "@saveChanges": {
+        "description": "Текст на кнопке сохранения"
+    },
     "english": "Английский",
+    "@english": {
+        "description": "Название английского языка"
+    },
     "russian": "Русский",
+    "@russian": {
+        "description": "Название русского языка"
+    },
     "kazakh": "Казахский",
+    "@kazakh": {
+        "description": "Название казахского языка"
+    },
     "taskDeleted": "Задача удалена",
+    "@taskDeleted": {
+        "description": "Сообщение об удалении задачи"
+    },
     "undo": "Отменить",
+    "@undo": {
+        "description": "Действие отмены"
+    },
     "addDeadline": "Добавить дедлайн",
+    "@addDeadline": {
+        "description": "Добавление срока выполнения"
+    },
     "deadline": "Дедлайн",
+    "@deadline": {
+        "description": "Срок выполнения"
+    },
     "clearAll": "Очистить всё",
+    "@clearAll": {
+        "description": "Сброс всех фильтров"
+    },
     "filters": "Фильтры",
+    "@filters": {
+        "description": "Раздел фильтров"
+    },
     "appTitle": "TaskFlow",
+    "@appTitle": {
+        "description": "Название приложения"
+    },
     "sortBy": "Сортировать",
+    "@sortBy": {
+        "description": "Выбор сортировки"
+    },
     "dateCreated": "По дате создания",
+    "@dateCreated": {
+        "description": "Сортировка по дате"
+    },
     "alphabetical": "А-Я",
+    "@alphabetical": {
+        "description": "Сортировка по алфавиту"
+    },
     "priority": "Приоритет",
-    "category": "Категория"
+    "@priority": {
+        "description": "Приоритет задачи"
+    },
+    "category": "Категория",
+    "@category": {
+        "description": "Категория задачи"
+    },
+    "reviewTitle": "Вам нравится приложение?",
+    "@reviewTitle": {
+        "description": "Заголовок диалога оценки"
+    },
+    "reviewDescription": "Ваш отзыв поможет нам сделать приложение ещё лучше.",
+    "@reviewDescription": {
+        "description": "Описание диалога оценки"
+    },
+    "reviewLoveIt": "Обожаю!",
+    "@reviewLoveIt": {
+        "description": "Кнопка положительной оценки"
+    },
+    "reviewNeedsImprovement": "Нужны улучшения",
+    "@reviewNeedsImprovement": {
+        "description": "Кнопка конструктивной критики"
+    },
+    "reviewLater": "Позже",
+    "@reviewLater": {
+        "description": "Кнопка отложить оценку"
+    },
+    "thanksForFeedback": "Спасибо за ваш отзыв!",
+    "@thanksForFeedback": {
+        "description": "Благодарность за отзыв"
+    }
 }

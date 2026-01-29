@@ -27,9 +27,9 @@ class TodoListView extends StatelessWidget {
           return const _LoadingView();
         }
 
-        final todos = filterCompleted
-            ? state.completedTodos
-            : state.pendingTodos;
+        final todos =
+            (filterCompleted ? state.completedTodos : state.pendingTodos)
+                .toList();
 
         if (todos.isEmpty) {
           return EmptyTodoView(
@@ -57,6 +57,15 @@ class TodoListView extends StatelessWidget {
                   context.read<TodoBloc>().add(
                     TodoCompletionToggled(todo: todo, isCompleted: isChecked),
                   );
+                  if (isChecked) {
+                    Future.delayed(const Duration(milliseconds: 600), () {
+                      if (context.mounted) {
+                        context.read<TodoBloc>().add(
+                          const TodoCompletionAnimationFinished(),
+                        );
+                      }
+                    });
+                  }
                 },
                 onDelete: () => _handleDelete(context, todo, l10n),
                 onEdit: () => _handleEdit(context, todo),

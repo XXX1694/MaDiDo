@@ -1,39 +1,171 @@
 {
     "@@locale": "en",
     "myTasks": "My Tasks",
+    "@myTasks": {
+        "description": "Title for the main tasks screen"
+    },
     "toDo": "To Do",
+    "@toDo": {
+        "description": "Label for the pending tasks tab"
+    },
     "done": "Done",
+    "@done": {
+        "description": "Label for the completed tasks tab"
+    },
     "noCompletedTasks": "No completed tasks yet",
+    "@noCompletedTasks": {
+        "description": "Empty state message for completed tasks tab"
+    },
     "noPendingTasks": "You have no tasks to do",
+    "@noPendingTasks": {
+        "description": "Empty state message for pending tasks tab"
+    },
     "tapToCreate": "Tap + to create a new task",
+    "@tapToCreate": {
+        "description": "Hint for creating a new task"
+    },
     "newTask": "New Task",
+    "@newTask": {
+        "description": "Title for the new task creation screen"
+    },
     "whatNeedsToBeDone": "What needs to be done?",
+    "@whatNeedsToBeDone": {
+        "description": "Placeholder for task title input"
+    },
     "descriptionOptional": "Description (optional)",
+    "@descriptionOptional": {
+        "description": "Placeholder for task description input"
+    },
     "createTask": "Create Task",
+    "@createTask": {
+        "description": "Label for the create task button"
+    },
     "settings": "Settings",
+    "@settings": {
+        "description": "Title for the settings screen"
+    },
     "general": "General",
+    "@general": {
+        "description": "Section header for general settings"
+    },
     "language": "Language",
+    "@language": {
+        "description": "Label for the language selection setting"
+    },
     "appearance": "Appearance",
+    "@appearance": {
+        "description": "Section header for appearance settings"
+    },
     "theme": "Theme",
+    "@theme": {
+        "description": "Label for the theme selection setting"
+    },
     "system": "System",
+    "@system": {
+        "description": "Option for system theme"
+    },
     "light": "Light",
+    "@light": {
+        "description": "Option for light theme"
+    },
     "dark": "Dark",
+    "@dark": {
+        "description": "Option for dark theme"
+    },
     "delete": "Delete",
+    "@delete": {
+        "description": "Label for delete action"
+    },
     "editTask": "Edit Task",
+    "@editTask": {
+        "description": "Title for the edit task screen"
+    },
     "saveChanges": "Save Changes",
+    "@saveChanges": {
+        "description": "Label for the save changes button"
+    },
     "english": "English",
+    "@english": {
+        "description": "Name of the English language"
+    },
     "russian": "Russian",
+    "@russian": {
+        "description": "Name of the Russian language"
+    },
     "kazakh": "Kazakh",
+    "@kazakh": {
+        "description": "Name of the Kazakh language"
+    },
     "taskDeleted": "Task deleted",
+    "@taskDeleted": {
+        "description": "Message shown when a task is deleted"
+    },
     "undo": "Undo",
+    "@undo": {
+        "description": "Label for undo action"
+    },
     "addDeadline": "Add deadline",
+    "@addDeadline": {
+        "description": "Label for adding a deadline to a task"
+    },
     "deadline": "Deadline",
+    "@deadline": {
+        "description": "Label for task deadline"
+    },
     "clearAll": "Clear All",
+    "@clearAll": {
+        "description": "Label for clearing all filters"
+    },
     "filters": "Filters",
+    "@filters": {
+        "description": "Label for filters section"
+    },
     "appTitle": "TaskFlow",
+    "@appTitle": {
+        "description": "The title of the application"
+    },
     "sortBy": "Sort by",
+    "@sortBy": {
+        "description": "Label for sorting options"
+    },
     "dateCreated": "Date Created",
+    "@dateCreated": {
+        "description": "Option for sorting by creation date"
+    },
     "alphabetical": "A-Z",
+    "@alphabetical": {
+        "description": "Option for alphabetical sorting"
+    },
     "priority": "Priority",
-    "category": "Category"
+    "@priority": {
+        "description": "Option for sorting by priority"
+    },
+    "category": "Category",
+    "@category": {
+        "description": "Option for sorting by category"
+    },
+    "reviewTitle": "Enjoying the app?",
+    "@reviewTitle": {
+        "description": "Title for the review dialog"
+    },
+    "reviewDescription": "Your feedback helps us make the app better for everyone.",
+    "@reviewDescription": {
+        "description": "Description for the review dialog"
+    },
+    "reviewLoveIt": "I love it!",
+    "@reviewLoveIt": {
+        "description": "Button label for positive review"
+    },
+    "reviewNeedsImprovement": "Needs improvement",
+    "@reviewNeedsImprovement": {
+        "description": "Button label for constructive feedback"
+    },
+    "reviewLater": "Later",
+    "@reviewLater": {
+        "description": "Button label for postponing review"
+    },
+    "thanksForFeedback": "Thank you for your feedback!",
+    "@thanksForFeedback": {
+        "description": "Message shown after submitting feedback"
+    }
 }

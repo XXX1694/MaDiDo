@@ -21,10 +21,10 @@ class AppLocalizationsKk extends AppLocalizations {
   String get noCompletedTasks => 'Орындалған тапсырмалар жоқ';
 
   @override
-  String get noPendingTasks => 'Тапсырмалар жоқ';
+  String get noPendingTasks => 'Орындайтын тапсырмалар жоқ';
 
   @override
-  String get tapToCreate => 'Тапсырма құру үшін + басыңыз';
+  String get tapToCreate => 'Тапсырма жасау үшін + басыңыз';
 
   @override
   String get newTask => 'Жаңа тапсырма';
@@ -36,13 +36,13 @@ class AppLocalizationsKk extends AppLocalizations {
   String get descriptionOptional => 'Сипаттама (міндетті емес)';
 
   @override
-  String get createTask => 'Тапсырма құру';
+  String get createTask => 'Тапсырма жасау';
 
   @override
-  String get settings => 'Баптаулар';
+  String get settings => 'Параметрлер';
 
   @override
-  String get general => 'Негізгі';
+  String get general => 'Жалпы';
 
   @override
   String get language => 'Тіл';
@@ -60,10 +60,10 @@ class AppLocalizationsKk extends AppLocalizations {
   String get light => 'Жарық';
 
   @override
-  String get dark => 'Күңгірт';
+  String get dark => 'Қараңғы';
 
   @override
-  String get delete => 'Жою';
+  String get delete => 'Өшіру';
 
   @override
   String get editTask => 'Тапсырманы өңдеу';
@@ -81,16 +81,16 @@ class AppLocalizationsKk extends AppLocalizations {
   String get kazakh => 'Қазақ';
 
   @override
-  String get taskDeleted => 'Тапсырма жойылды';
+  String get taskDeleted => 'Тапсырма өшірілді';
 
   @override
   String get undo => 'Болдырмау';
 
   @override
-  String get addDeadline => 'Мерзім қосу';
+  String get addDeadline => 'Дедлайн қосу';
 
   @override
-  String get deadline => 'Мерзім';
+  String get deadline => 'Дедлайн';
 
   @override
   String get clearAll => 'Барлығын тазалау';
@@ -105,14 +105,33 @@ class AppLocalizationsKk extends AppLocalizations {
   String get sortBy => 'Сұрыптау';
 
   @override
-  String get dateCreated => 'Жасалған күні';
+  String get dateCreated => 'Жасалған күні бойынша';
 
   @override
-  String get alphabetical => 'Ә-Я';
+  String get alphabetical => 'А-Я';
 
   @override
-  String get priority => 'Басымдық';
+  String get priority => 'Маңыздылығы';
 
   @override
   String get category => 'Санат';
+
+  @override
+  String get reviewTitle => 'Қосымша ұнай ма?';
+
+  @override
+  String get reviewDescription =>
+      'Сіздің пікіріңіз қосымшаны бұдан да жақсырақ етуге көмектеседі.';
+
+  @override
+  String get reviewLoveIt => 'Маған ұнайды!';
+
+  @override
+  String get reviewNeedsImprovement => 'Жақсарту керек';
+
+  @override
+  String get reviewLater => 'Кейінірек';
+
+  @override
+  String get thanksForFeedback => 'Пікіріңіз үшін рақмет!';
 }
