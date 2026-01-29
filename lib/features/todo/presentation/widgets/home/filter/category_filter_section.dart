@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/domain/entities/todo_category.dart';
 
 class CategoryFilterSection extends StatelessWidget {
   const CategoryFilterSection({
-    super.key,
     required this.selectedCategoryId,
     required this.onCategorySelected,
     required this.label,
     required this.isDark,
+    super.key,
   });
   final String? selectedCategoryId;
   final ValueChanged<String?> onCategorySelected;

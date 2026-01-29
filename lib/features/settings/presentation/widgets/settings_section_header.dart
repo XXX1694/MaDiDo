@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SettingsSectionHeader extends StatelessWidget {
-  const SettingsSectionHeader({super.key, required this.title});
+  const SettingsSectionHeader({required this.title, super.key});
   final String title;
 
   @override

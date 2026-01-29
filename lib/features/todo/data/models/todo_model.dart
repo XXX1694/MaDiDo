@@ -7,6 +7,21 @@ part 'todo_model.g.dart';
 
 @collection
 class TodoModel {
+  TodoModel();
+
+  factory TodoModel.fromDomain(Todo todo) {
+    return TodoModel()
+      ..id = todo.id
+      ..title = todo.title
+      ..description = todo.description
+      ..isCompleted = todo.isCompleted
+      ..createdAt = todo.createdAt
+      ..deadline = todo.deadline
+      ..priority = todo.priority
+      ..categoryId = todo.categoryId
+      ..isPinned = todo.isPinned;
+  }
+
   Id get isarId => fastHash(id);
 
   @Index(unique: true, replace: true)
@@ -38,18 +53,5 @@ class TodoModel {
       categoryId: categoryId,
       isPinned: isPinned,
     );
-  }
-
-  static TodoModel fromDomain(Todo todo) {
-    return TodoModel()
-      ..id = todo.id
-      ..title = todo.title
-      ..description = todo.description
-      ..isCompleted = todo.isCompleted
-      ..createdAt = todo.createdAt
-      ..deadline = todo.deadline
-      ..priority = todo.priority
-      ..categoryId = todo.categoryId
-      ..isPinned = todo.isPinned;
   }
 }

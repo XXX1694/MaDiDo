@@ -1,6 +1,6 @@
+import 'package:to_do/core/services/notification_service.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/repositories/todo_repository.dart';
-import 'package:to_do/core/services/notification_service.dart';
 
 class UpdateTodoUseCase {
   UpdateTodoUseCase(this.repository, this.notificationService);

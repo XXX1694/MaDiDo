@@ -4,7 +4,7 @@ import 'package:to_do/core/theme/app_colors.dart';
 class TodoItemSwipeBackground extends StatelessWidget {
   // true for Delete (right to left), false for Pin (left to right)
 
-  const TodoItemSwipeBackground({super.key, required this.isRightSwipe});
+  const TodoItemSwipeBackground({required this.isRightSwipe, super.key});
   final bool isRightSwipe;
 
   @override

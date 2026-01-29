@@ -46,7 +46,7 @@ void main() {
     });
 
     test('handles special characters', () {
-      const specialString = '!@#\$%^&*()_+-=[]{}|;:,.<>?';
+      const specialString = r'!@#$%^&*()_+-=[]{}|;:,.<>?';
       final hash = fastHash(specialString);
 
       expect(hash, isNotNull);

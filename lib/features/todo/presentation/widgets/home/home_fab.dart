@@ -4,7 +4,7 @@ import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/presentation/widgets/add_todo_sheet.dart';
 
 class HomeFab extends StatelessWidget {
-  const HomeFab({super.key, required this.isDark});
+  const HomeFab({required this.isDark, super.key});
   final bool isDark;
 
   @override
@@ -29,7 +29,7 @@ class HomeFab extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           onTap: () {
             HapticFeedback.mediumImpact();
-            showModalBottomSheet(
+            showModalBottomSheet<void>(
               context: context,
               isScrollControlled: true,
               backgroundColor: Colors.transparent,

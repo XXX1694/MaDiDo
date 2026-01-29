@@ -5,11 +5,11 @@ import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class FilterHeader extends StatelessWidget {
   const FilterHeader({
-    super.key,
     required this.title,
     required this.showClearButton,
     required this.onClearAll,
     required this.isDark,
+    super.key,
   });
   final String title;
   final bool showClearButton;
@@ -50,7 +50,8 @@ class FilterHeader extends StatelessWidget {
                 ),
               ),
             ),
-            // Use Opacity + IgnorePointer instead of conditional to preserve layout
+            // Use Opacity + IgnorePointer instead of conditional
+            // to preserve layout
             Opacity(
               opacity: showClearButton ? 1.0 : 0.0,
               child: IgnorePointer(

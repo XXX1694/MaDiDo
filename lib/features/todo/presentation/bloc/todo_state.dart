@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:to_do/features/todo/domain/entities/sort_option.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
-import 'package:to_do/features/todo/domain/entities/sort_option.dart';
 
 enum TodoStatus { initial, loading, success, failure }
 

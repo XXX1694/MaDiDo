@@ -15,6 +15,8 @@ class DateTimeUtils {
 
     if (date == null) return null;
 
+    if (!context.mounted) return null;
+
     final time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(

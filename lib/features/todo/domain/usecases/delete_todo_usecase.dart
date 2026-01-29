@@ -1,5 +1,5 @@
-import 'package:to_do/features/todo/domain/repositories/todo_repository.dart';
 import 'package:to_do/core/services/notification_service.dart';
+import 'package:to_do/features/todo/domain/repositories/todo_repository.dart';
 
 class DeleteTodoUseCase {
   DeleteTodoUseCase(this.repository, this.notificationService);

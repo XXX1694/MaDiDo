@@ -22,46 +22,44 @@ Future<void> init() async {
   // External
   final dir = await getApplicationDocumentsDirectory();
   final isar = await Isar.open([TodoModelSchema], directory: dir.path);
-  sl.registerLazySingleton(() => isar);
-
-  // Data Sources
-  sl.registerLazySingleton<TodoLocalDataSource>(
-    () => TodoLocalDataSourceImpl(sl()),
-  );
-
-  // Repositories
-  sl.registerLazySingleton<TodoRepository>(
-    () => TodoRepositoryImpl(localDataSource: sl()),
-  );
-
-  // Use Cases
-  sl.registerLazySingleton(() => WatchTodosUseCase(sl()));
-  sl.registerLazySingleton(() => AddTodoUseCase(sl(), sl()));
-  sl.registerLazySingleton(() => UpdateTodoUseCase(sl(), sl()));
-  sl.registerLazySingleton(() => DeleteTodoUseCase(sl(), sl()));
+  sl
+    ..registerLazySingleton(() => isar)
+    // Data Sources
+    ..registerLazySingleton<TodoLocalDataSource>(
+      () => TodoLocalDataSourceImpl(sl()),
+    )
+    // Repositories
+    ..registerLazySingleton<TodoRepository>(
+      () => TodoRepositoryImpl(localDataSource: sl()),
+    )
+    // Use Cases
+    ..registerLazySingleton(() => WatchTodosUseCase(sl()))
+    ..registerLazySingleton(() => AddTodoUseCase(sl(), sl()))
+    ..registerLazySingleton(() => UpdateTodoUseCase(sl(), sl()))
+    ..registerLazySingleton(() => DeleteTodoUseCase(sl(), sl()));
 
   // External - Prefs
   final prefs = await SharedPreferences.getInstance();
-  sl.registerLazySingleton(() => prefs);
-
-  // Settings Repository
-  sl.registerLazySingleton<SettingsRepository>(
-    () => SettingsRepositoryImpl(sl()),
-  );
-
-  // Services
-  sl.registerLazySingleton(NotificationService.new);
+  sl
+    ..registerLazySingleton(() => prefs)
+    // Settings Repository
+    ..registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(sl()),
+    )
+    // Services
+    ..registerLazySingleton(NotificationService.new);
   await sl<NotificationService>().init();
   await sl<NotificationService>().requestPermissions();
 
   // Blocs
-  sl.registerFactory(
-    () => TodoBloc(
-      watchTodosUseCase: sl(),
-      addTodoUseCase: sl(),
-      updateTodoUseCase: sl(),
-      deleteTodoUseCase: sl(),
-    ),
-  );
-  sl.registerFactory(() => SettingsBloc(repository: sl()));
+  sl
+    ..registerFactory(
+      () => TodoBloc(
+        watchTodosUseCase: sl(),
+        addTodoUseCase: sl(),
+        updateTodoUseCase: sl(),
+        deleteTodoUseCase: sl(),
+      ),
+    )
+    ..registerFactory(() => SettingsBloc(repository: sl()));
 }

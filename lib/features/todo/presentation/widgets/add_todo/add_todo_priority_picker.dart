@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
 
 class AddTodoPriorityPicker extends StatelessWidget {
   const AddTodoPriorityPicker({
-    super.key,
     required this.selectedPriority,
     required this.onSelected,
     required this.isDark,
     required this.label,
+    super.key,
   });
   final TodoPriority selectedPriority;
   final ValueChanged<TodoPriority> onSelected;

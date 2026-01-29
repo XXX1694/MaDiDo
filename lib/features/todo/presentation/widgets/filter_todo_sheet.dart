@@ -4,9 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_event.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_state.dart';
+import 'package:to_do/features/todo/presentation/widgets/home/filter/category_filter_section.dart';
 import 'package:to_do/features/todo/presentation/widgets/home/filter/filter_header.dart';
 import 'package:to_do/features/todo/presentation/widgets/home/filter/priority_filter_section.dart';
-import 'package:to_do/features/todo/presentation/widgets/home/filter/category_filter_section.dart';
 import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class FilterTodoSheet extends StatelessWidget {
@@ -32,9 +32,7 @@ class FilterTodoSheet extends StatelessWidget {
                     state.filterCategoryId != null ||
                     state.filterPriority != null,
                 onClearAll: () {
-                  context.read<TodoBloc>().add(
-                    const TodosFilterChanged(priority: null),
-                  );
+                  context.read<TodoBloc>().add(const TodosFilterChanged());
                 },
               ),
               const Gap(32),

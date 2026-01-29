@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/entities/sort_option.dart';
+import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
 
 abstract class TodoEvent extends Equatable {

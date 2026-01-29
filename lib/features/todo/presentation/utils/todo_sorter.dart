@@ -3,9 +3,7 @@ import 'package:to_do/features/todo/domain/entities/todo.dart';
 
 class TodoSorter {
   static List<Todo> sort(List<Todo> todos, SortOption sortOption) {
-    final sortedTodos = List<Todo>.from(todos);
-
-    sortedTodos.sort((a, b) {
+    return List<Todo>.from(todos)..sort((a, b) {
       // 1. Pinned always on top
       if (a.isPinned && !b.isPinned) return -1;
       if (!a.isPinned && b.isPinned) return 1;
@@ -26,7 +24,5 @@ class TodoSorter {
           return b.createdAt.compareTo(a.createdAt); // Secondary
       }
     });
-
-    return sortedTodos;
   }
 }

@@ -4,14 +4,14 @@ import 'package:to_do/core/theme/app_colors.dart';
 
 class AddTodoInputField extends StatelessWidget {
   const AddTodoInputField({
-    super.key,
     required this.controller,
     required this.hintText,
+    required this.isDark,
+    super.key,
     this.maxLines = 1,
     this.minLines = 1,
     this.autofocus = false,
     this.textInputAction,
-    required this.isDark,
     this.fontSize = 15,
     this.fontWeight = FontWeight.w400,
   });

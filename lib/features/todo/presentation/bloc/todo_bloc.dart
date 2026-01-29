@@ -52,7 +52,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
           isCompleted: state.filterIsCompleted,
         ).listen(
           (todos) => add(TodosListUpdated(todos)),
-          onError: (error) => emit(
+          onError: (Object error) => emit(
             state.copyWith(
               status: TodoStatus.failure,
               errorMessage: error.toString(),

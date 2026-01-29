@@ -3,10 +3,10 @@ import 'package:to_do/core/theme/app_colors.dart';
 
 class FlowCheckbox extends StatelessWidget {
   const FlowCheckbox({
-    super.key,
     required this.isChecked,
     required this.onTap,
     required this.isDark,
+    super.key,
   });
   final bool isChecked;
   final VoidCallback onTap;

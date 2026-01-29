@@ -7,17 +7,17 @@ import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/extensions/todo_extensions.dart';
 import 'package:to_do/features/todo/presentation/widgets/todo_item/flow_checkbox.dart';
-import 'package:to_do/features/todo/presentation/widgets/todo_item/todo_item_tag.dart';
 import 'package:to_do/features/todo/presentation/widgets/todo_item/todo_item_swipe_background.dart';
+import 'package:to_do/features/todo/presentation/widgets/todo_item/todo_item_tag.dart';
 
 class TodoItem extends StatefulWidget {
   const TodoItem({
-    super.key,
     required this.todo,
     required this.onToggle,
     required this.onDelete,
     required this.onEdit,
     required this.onPin,
+    super.key,
   });
   final Todo todo;
   final ValueChanged<bool> onToggle;

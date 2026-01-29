@@ -44,7 +44,7 @@ void main() {
       });
 
       test('handles null description', () {
-        final todo = TodoFactory.create(title: 'Test', description: null);
+        final todo = TodoFactory.create(title: 'Test');
 
         expect(todo.description, isNull);
       });

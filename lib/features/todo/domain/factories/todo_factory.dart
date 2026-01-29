@@ -20,7 +20,7 @@ class TodoFactory {
     return Todo(
       id: _uuid.v4(),
       title: title.trim(),
-      description: description?.trim().isEmpty == true
+      description: description?.trim().isEmpty ?? false
           ? null
           : description?.trim(),
       createdAt: DateTime.now(),
@@ -41,7 +41,7 @@ class TodoFactory {
   }) {
     return original.copyWith(
       title: title.trim(),
-      description: description?.trim().isEmpty == true
+      description: description?.trim().isEmpty ?? false
           ? null
           : description?.trim(),
       deadline: deadline,

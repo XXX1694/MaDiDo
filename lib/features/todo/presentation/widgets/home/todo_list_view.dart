@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/core/utils/ui_utils.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_event.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_state.dart';
-import 'package:to_do/features/todo/presentation/widgets/todo_item.dart';
 import 'package:to_do/features/todo/presentation/widgets/add_todo_sheet.dart';
 import 'package:to_do/features/todo/presentation/widgets/home/empty_todo_view.dart';
+import 'package:to_do/features/todo/presentation/widgets/todo_item.dart';
 import 'package:to_do/l10n/generated/app_localizations.dart';
-import 'package:to_do/core/theme/app_colors.dart';
 
 class TodoListView extends StatelessWidget {
-  const TodoListView({super.key, required this.filterCompleted});
+  const TodoListView({required this.filterCompleted, super.key});
   final bool filterCompleted;
 
   @override

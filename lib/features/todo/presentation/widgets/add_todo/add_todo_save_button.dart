@@ -4,11 +4,11 @@ import 'package:to_do/core/theme/app_colors.dart';
 
 class AddTodoSaveButton extends StatelessWidget {
   const AddTodoSaveButton({
-    super.key,
     required this.label,
     required this.isEnabled,
     required this.onTap,
     required this.isDark,
+    super.key,
   });
   final String label;
   final bool isEnabled;

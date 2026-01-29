@@ -10,7 +10,6 @@ class AppTheme {
       brightness: Brightness.light,
       colorScheme: const ColorScheme.light(
         primary: AppColors.primaryLight,
-        surface: AppColors.surfaceLight,
         onSurface: AppColors.textPrimaryLight,
         error: AppColors.error,
         outline: AppColors.borderLight,

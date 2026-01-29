@@ -1,9 +1,8 @@
 import 'package:to_do/features/todo/data/datasources/todo_local_datasource.dart';
 import 'package:to_do/features/todo/data/models/todo_model.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
-import 'package:to_do/features/todo/domain/repositories/todo_repository.dart';
-
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
+import 'package:to_do/features/todo/domain/repositories/todo_repository.dart';
 
 class TodoRepositoryImpl implements TodoRepository {
   TodoRepositoryImpl({required this.localDataSource});

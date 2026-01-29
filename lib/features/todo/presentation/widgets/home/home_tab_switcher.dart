@@ -5,12 +5,12 @@ import 'package:to_do/core/theme/app_colors.dart';
 
 class HomeTabSwitcher extends StatelessWidget {
   const HomeTabSwitcher({
-    super.key,
     required this.currentIndex,
     required this.onTabChanged,
     required this.leftLabel,
     required this.rightLabel,
     required this.isDark,
+    super.key,
   });
   final int currentIndex;
   final ValueChanged<int> onTabChanged;

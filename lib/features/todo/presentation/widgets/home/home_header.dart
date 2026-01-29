@@ -15,7 +15,7 @@ import 'package:to_do/features/todo/presentation/widgets/home/home_icon_button.d
 import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key, required this.isDark});
+  const HomeHeader({required this.isDark, super.key});
 
   final bool isDark;
 

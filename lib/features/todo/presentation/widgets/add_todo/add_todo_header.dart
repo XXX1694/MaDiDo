@@ -4,10 +4,10 @@ import 'package:to_do/core/theme/app_colors.dart';
 
 class AddTodoHeader extends StatelessWidget {
   const AddTodoHeader({
-    super.key,
     required this.title,
     required this.onClose,
     required this.isDark,
+    super.key,
   });
   final String title;
   final VoidCallback onClose;

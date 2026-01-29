@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class EmptyTodoView extends StatelessWidget {
   const EmptyTodoView({
-    super.key,
     required this.filterCompleted,
     required this.title,
-    this.subtitle,
     required this.isDark,
+    super.key,
+    this.subtitle,
   });
   final bool filterCompleted;
   final String title;

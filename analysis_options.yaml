@@ -30,3 +30,6 @@ linter:
     # Style
     require_trailing_commas: true
     directives_ordering: true
+    
+    # Disable documentation warnings
+    public_member_api_docs: false

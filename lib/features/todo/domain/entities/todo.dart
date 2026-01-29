@@ -5,9 +5,9 @@ class Todo extends Equatable {
   const Todo({
     required this.id,
     required this.title,
+    required this.createdAt,
     this.description,
     this.isCompleted = false,
-    required this.createdAt,
     this.deadline,
     this.priority = TodoPriority.medium,
     this.categoryId,

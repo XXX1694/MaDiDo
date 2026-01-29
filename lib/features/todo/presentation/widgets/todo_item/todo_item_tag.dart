@@ -5,9 +5,9 @@ import 'package:to_do/core/theme/app_colors.dart';
 
 class TodoItemTag extends StatelessWidget {
   const TodoItemTag({
-    super.key,
     required this.label,
     required this.color,
+    super.key,
     this.icon,
     this.isLineThrough = false,
   });

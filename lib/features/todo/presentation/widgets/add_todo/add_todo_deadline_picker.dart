@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:gap/gap.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class AddTodoDeadlinePicker extends StatelessWidget {
   const AddTodoDeadlinePicker({
-    super.key,
     required this.deadline,
     required this.onTap,
     required this.onClear,
     required this.isDark,
     required this.label,
     required this.hintText,
+    super.key,
   });
   final DateTime? deadline;
   final VoidCallback onTap;

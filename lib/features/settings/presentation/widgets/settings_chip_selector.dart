@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 
 class SettingsChipSelector<T> extends StatelessWidget {
   const SettingsChipSelector({
-    super.key,
     required this.items,
     required this.selectedValue,
     required this.onSelected,
+    super.key,
   });
   final List<SettingsChipItem<T>> items;
   final T selectedValue;
