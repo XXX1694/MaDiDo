@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gap/gap.dart';
 import 'package:to_do/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:to_do/features/settings/presentation/bloc/settings_event.dart';
 import 'package:to_do/features/settings/presentation/bloc/settings_state.dart';
+import 'package:to_do/features/settings/presentation/widgets/settings_section_header.dart';
+import 'package:to_do/features/settings/presentation/widgets/settings_chip_selector.dart';
 import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -23,118 +26,63 @@ class SettingsPage extends StatelessWidget {
       body: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) {
           return ListView(
-            padding: const EdgeInsets.all(16),
+            key: const ValueKey('settings_list_view'),
+            padding: const EdgeInsets.all(20),
             children: [
-              _SectionHeader(title: l10n.general),
-              Card(
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(Icons.language),
-                      title: Text(l10n.language, style: GoogleFonts.inter()),
-                      trailing: DropdownButton<Locale>(
-                        value: state.locale,
-                        underline: const SizedBox(),
-                        onChanged: (Locale? newLocale) {
-                          if (newLocale != null) {
-                            context.read<SettingsBloc>().add(
-                              ChangeLocale(newLocale),
-                            );
-                          }
-                        },
-                        items: [
-                          DropdownMenuItem(
-                            value: const Locale('en'),
-                            child: Text(
-                              l10n.english,
-                              style: GoogleFonts.inter(),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: const Locale('ru'),
-                            child: Text(
-                              l10n.russian,
-                              style: GoogleFonts.inter(),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: const Locale('kk'),
-                            child: Text(
-                              l10n.kazakh,
-                              style: GoogleFonts.inter(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              SettingsSectionHeader(title: l10n.general),
+              const Gap(8),
+              SettingsChipSelector<Locale>(
+                selectedValue: state.locale,
+                onSelected: (newLocale) {
+                  context.read<SettingsBloc>().add(ChangeLocale(newLocale));
+                },
+                items: [
+                  SettingsChipItem(
+                    value: const Locale('en'),
+                    label: l10n.english,
+                    icon: Icons.language_rounded,
+                  ),
+                  SettingsChipItem(
+                    value: const Locale('ru'),
+                    label: l10n.russian,
+                    icon: Icons.language_rounded,
+                  ),
+                  SettingsChipItem(
+                    value: const Locale('kk'),
+                    label: l10n.kazakh,
+                    icon: Icons.language_rounded,
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
-              _SectionHeader(title: l10n.appearance),
-              Card(
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(Icons.brightness_6),
-                      title: Text(l10n.theme, style: GoogleFonts.inter()),
-                      trailing: DropdownButton<ThemeMode>(
-                        value: state.themeMode,
-                        underline: const SizedBox(),
-                        onChanged: (ThemeMode? newMode) {
-                          if (newMode != null) {
-                            context.read<SettingsBloc>().add(
-                              ChangeTheme(newMode),
-                            );
-                          }
-                        },
-                        items: [
-                          DropdownMenuItem(
-                            value: ThemeMode.system,
-                            child: Text(
-                              l10n.system,
-                              style: GoogleFonts.inter(),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: ThemeMode.light,
-                            child: Text(l10n.light, style: GoogleFonts.inter()),
-                          ),
-                          DropdownMenuItem(
-                            value: ThemeMode.dark,
-                            child: Text(l10n.dark, style: GoogleFonts.inter()),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              const Gap(32),
+              SettingsSectionHeader(title: l10n.appearance),
+              const Gap(8),
+              SettingsChipSelector<ThemeMode>(
+                selectedValue: state.themeMode,
+                onSelected: (newMode) {
+                  context.read<SettingsBloc>().add(ChangeTheme(newMode));
+                },
+                items: [
+                  SettingsChipItem(
+                    value: ThemeMode.system,
+                    label: l10n.system,
+                    icon: Icons.settings_suggest_rounded,
+                  ),
+                  SettingsChipItem(
+                    value: ThemeMode.light,
+                    label: l10n.light,
+                    icon: Icons.light_mode_rounded,
+                  ),
+                  SettingsChipItem(
+                    value: ThemeMode.dark,
+                    label: l10n.dark,
+                    icon: Icons.dark_mode_rounded,
+                  ),
+                ],
               ),
             ],
           );
         },
-      ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  final String title;
-
-  const _SectionHeader({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 4, bottom: 8),
-      child: Text(
-        title.toUpperCase(),
-        style: GoogleFonts.inter(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: Theme.of(context).colorScheme.primary,
-          letterSpacing: 1.2,
-        ),
       ),
     );
   }

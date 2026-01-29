@@ -91,4 +91,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get deadline => 'Дедлайн';
+
+  @override
+  String get clearAll => 'Очистить всё';
+
+  @override
+  String get filters => 'Фильтры';
 }

@@ -91,4 +91,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deadline => 'Deadline';
+
+  @override
+  String get clearAll => 'Clear All';
+
+  @override
+  String get filters => 'Filters';
 }

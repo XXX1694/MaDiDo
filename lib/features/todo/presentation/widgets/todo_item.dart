@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:to_do/core/theme/app_colors.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
-import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
-import 'package:to_do/features/todo/domain/entities/todo_category.dart';
+import 'package:to_do/features/todo/domain/extensions/todo_extensions.dart';
+import 'package:to_do/features/todo/presentation/widgets/todo_item/flow_checkbox.dart';
+import 'package:to_do/features/todo/presentation/widgets/todo_item/todo_item_tag.dart';
+import 'package:to_do/features/todo/presentation/widgets/todo_item/todo_item_swipe_background.dart';
 
 class TodoItem extends StatefulWidget {
   final Todo todo;
@@ -34,35 +35,8 @@ class _TodoItemState extends State<TodoItem>
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
   late Animation<double> _sizeAnimation;
+
   bool? _isCompletedOverride;
-
-  bool get _isOverdue {
-    if (widget.todo.deadline == null) return false;
-    return widget.todo.deadline!.isBefore(DateTime.now()) &&
-        !widget.todo.isCompleted;
-  }
-
-  Color _getPriorityColor(TodoPriority p) {
-    switch (p) {
-      case TodoPriority.high:
-        return AppColors.error;
-      case TodoPriority.medium:
-        return Colors.orange;
-      case TodoPriority.low:
-        return Colors.blue;
-    }
-  }
-
-  TodoCategory? get _category {
-    if (widget.todo.categoryId == null) return null;
-    try {
-      return TodoCategory.defaultCategories.firstWhere(
-        (c) => c.id == widget.todo.categoryId,
-      );
-    } catch (_) {
-      return null;
-    }
-  }
 
   @override
   void initState() {
@@ -91,233 +65,200 @@ class _TodoItemState extends State<TodoItem>
     super.dispose();
   }
 
-  void _handleToggle(bool value) {
-    if (value) {
+  void _handleToggle() {
+    final newValue = !(_isCompletedOverride ?? widget.todo.isCompleted);
+    if (newValue) {
       HapticFeedback.lightImpact();
     } else {
       HapticFeedback.selectionClick();
     }
 
     setState(() {
-      _isCompletedOverride = value;
+      _isCompletedOverride = newValue;
     });
 
-    _controller.forward().then((_) {
-      widget.onToggle(value);
-    });
+    widget.onToggle(newValue);
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final isCompleted = _isCompletedOverride ?? widget.todo.isCompleted;
-    final priorityColor = _getPriorityColor(widget.todo.priority);
-    final category = _category;
+    final priorityColor = widget.todo.priorityColor;
+    final category = widget.todo.category;
 
     return FadeTransition(
-      opacity: _opacityAnimation,
-      child: SizeTransition(
-        sizeFactor: _sizeAnimation,
-        axisAlignment: -1.0,
-        child: Dismissible(
-          key: Key(widget.todo.id),
-          direction: DismissDirection.horizontal,
-          resizeDuration: const Duration(milliseconds: 200),
-          // Allow swipe left to delete, swipe right to pin
-          background: Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(left: 20),
-            color: Colors.orangeAccent,
-            child: Icon(
-              widget.todo.isPinned ? Icons.push_pin_outlined : Icons.push_pin,
-              color: Colors.white,
-            ),
-          ),
-          secondaryBackground: Container(
-            alignment: Alignment.centerRight,
-            padding: const EdgeInsets.only(right: 20),
-            color: AppColors.error,
-            child: const Icon(Icons.delete, color: Colors.white),
-          ),
-          confirmDismiss: (direction) async {
-            if (direction == DismissDirection.startToEnd) {
-              widget.onPin();
-              return false; // Don't delete
-            }
-            return true; // Delete
-          },
-          onDismissed: (direction) {
-            if (direction == DismissDirection.endToStart) {
-              widget.onDelete();
-            }
-          },
-          child: Card(
-            elevation: widget.todo.isPinned ? 4 : 1,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: widget.todo.isPinned
-                  ? BorderSide(
-                      color: priorityColor.withValues(alpha: 0.5),
-                      width: 1.5,
-                    )
-                  : BorderSide.none,
-            ),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(16),
-              onTap: widget.onEdit,
+          opacity: _opacityAnimation,
+          child: SizeTransition(
+            sizeFactor: _sizeAnimation,
+            axisAlignment: -1.0,
+            child: Dismissible(
+              key: Key(widget.todo.id),
+              direction: DismissDirection.horizontal,
+              resizeDuration: const Duration(milliseconds: 200),
+              background: const TodoItemSwipeBackground(isRightSwipe: false),
+              secondaryBackground: const TodoItemSwipeBackground(
+                isRightSwipe: true,
+              ),
+              confirmDismiss: (direction) async {
+                if (direction == DismissDirection.startToEnd) {
+                  widget.onPin();
+                  return false;
+                }
+                return true;
+              },
+              onDismissed: (direction) {
+                if (direction == DismissDirection.endToStart) {
+                  widget.onDelete();
+                }
+              },
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  // Left border for priority
-                  gradient: LinearGradient(
-                    stops: const [0.02, 0.02],
-                    colors: [priorityColor, Colors.transparent],
+                decoration: ShapeDecoration(
+                  color: isDark
+                      ? AppColors.surfaceDark
+                      : AppColors.surfaceLight,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(
+                      color: widget.todo.isPinned
+                          ? priorityColor.withValues(alpha: 0.5)
+                          : (isDark
+                                ? AppColors.borderDark.withValues(alpha: 0.5)
+                                : AppColors.borderLight),
+                      width: widget.todo.isPinned ? 1.5 : 1,
+                    ),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      Transform.scale(
-                        scale: 1.2,
-                        child: Checkbox(
-                          value: isCompleted,
-                          onChanged: (v) => _handleToggle(v ?? false),
-                          shape: const CircleBorder(),
-                        ),
-                      ),
-                      const Gap(12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    widget.todo.title,
-                                    style: GoogleFonts.inter(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      decoration: isCompleted
-                                          ? TextDecoration.lineThrough
-                                          : null,
-                                      color: isCompleted
-                                          ? (isDark
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    customBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    onTap: widget.onEdit,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FlowCheckbox(
+                            isChecked: isCompleted,
+                            onTap: _handleToggle,
+                            isDark: isDark,
+                          ),
+                          const Gap(16),
+                          Expanded(
+                            child: AnimatedOpacity(
+                              duration: const Duration(milliseconds: 300),
+                              opacity: isCompleted ? 0.5 : 1.0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          widget.todo.title,
+                                          style: GoogleFonts.inter(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                            decoration: isCompleted
+                                                ? TextDecoration.lineThrough
+                                                : null,
+                                            decorationColor: isDark
                                                 ? AppColors.textSecondaryDark
-                                                : AppColors.textSecondaryLight)
-                                          : (isDark
+                                                : AppColors.textSecondaryLight,
+                                            decorationThickness: 2,
+                                            color: isDark
                                                 ? AppColors.textPrimaryDark
-                                                : AppColors.textPrimaryLight),
-                                    ),
-                                  ),
-                                ),
-                                if (widget.todo.isPinned)
-                                  Icon(
-                                    Icons.push_pin,
-                                    size: 16,
-                                    color: priorityColor,
-                                  ),
-                              ],
-                            ),
-                            if (widget.todo.description != null &&
-                                widget.todo.description!.isNotEmpty) ...[
-                              const Gap(4),
-                              Text(
-                                widget.todo.description!,
-                                style: GoogleFonts.inter(
-                                  fontSize: 14,
-                                  color: isDark
-                                      ? AppColors.textSecondaryDark
-                                      : AppColors.textSecondaryLight,
-                                  decoration: isCompleted
-                                      ? TextDecoration.lineThrough
-                                      : null,
-                                ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                            const Gap(6),
-                            Row(
-                              children: [
-                                if (category != null) ...[
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 6,
-                                      vertical: 2,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Color(
-                                        category.colorValue,
-                                      ).withValues(alpha: 0.2),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    child: Text(
-                                      category.name,
-                                      style: TextStyle(
-                                        color: Color(category.colorValue),
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
+                                                : AppColors.textPrimaryLight,
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      if (widget.todo.isPinned) ...[
+                                        const Gap(8),
+                                        Container(
+                                          padding: const EdgeInsets.all(6),
+                                          decoration: BoxDecoration(
+                                            color: priorityColor.withValues(
+                                              alpha: 0.1,
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              8,
+                                            ),
+                                          ),
+                                          child: Icon(
+                                            Icons.push_pin_rounded,
+                                            size: 16,
+                                            color: isCompleted
+                                                ? Colors.grey
+                                                : priorityColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ],
                                   ),
-                                  const Gap(8),
-                                ],
-                                if (widget.todo.deadline != null) ...[
-                                  Icon(
-                                    Icons.calendar_today_rounded,
-                                    size: 14,
-                                    color: _isOverdue
-                                        ? AppColors.error
-                                        : (isDark
-                                              ? AppColors.textSecondaryDark
-                                              : AppColors.textSecondaryLight),
-                                  ),
-                                  const Gap(4),
-                                  Text(
-                                    DateFormat.yMMMd().add_Hm().format(
-                                      widget.todo.deadline!,
-                                    ),
-                                    style: GoogleFonts.inter(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: _isOverdue
-                                          ? AppColors.error
-                                          : (isDark
-                                                ? AppColors.textSecondaryDark
-                                                : AppColors.textSecondaryLight),
-                                      decoration: isCompleted
-                                          ? TextDecoration.lineThrough
-                                          : null,
-                                    ),
-                                  ),
-                                  if (_isOverdue) ...[
-                                    const Gap(4),
+                                  if (widget.todo.description != null &&
+                                      widget.todo.description!.isNotEmpty) ...[
+                                    const Gap(8),
                                     Text(
-                                      '!',
+                                      widget.todo.description!,
                                       style: GoogleFonts.inter(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.error,
+                                        fontSize: 14,
+                                        height: 1.5,
+                                        color: isDark
+                                            ? AppColors.textSecondaryDark
+                                            : AppColors.textSecondaryLight,
+                                        decoration: isCompleted
+                                            ? TextDecoration.lineThrough
+                                            : null,
+                                        decorationColor: isDark
+                                            ? AppColors.textSecondaryDark
+                                            : AppColors.textSecondaryLight,
                                       ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
+                                  const Gap(12),
+                                  Wrap(
+                                    spacing: 8,
+                                    runSpacing: 8,
+                                    children: [
+                                      TodoItemTag.priority(
+                                        label: widget.todo.priorityLabel,
+                                        color: priorityColor,
+                                        icon: widget.todo.priorityIcon,
+                                      ),
+                                      if (category != null)
+                                        TodoItemTag.category(
+                                          name: category.name,
+                                          color: Color(category.colorValue),
+                                        ),
+                                      if (widget.todo.deadline != null)
+                                        TodoItemTag.deadline(
+                                          deadline: widget.todo.deadline!,
+                                          isOverdue: widget.todo.isOverdue,
+                                          isCompleted: isCompleted,
+                                          isDark: isDark,
+                                        ),
+                                    ],
+                                  ),
                                 ],
-                              ],
+                              ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
-    ).animate().fadeIn(duration: 300.ms).slideX(begin: 0.1, end: 0);
+        )
+        .animate()
+        .fadeIn(duration: 350.ms)
+        .slideY(begin: 0.08, end: 0, curve: Curves.easeOutCubic);
   }
 }

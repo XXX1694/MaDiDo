@@ -27,5 +27,7 @@
     "taskDeleted": "Task deleted",
     "undo": "Undo",
     "addDeadline": "Add deadline",
-    "deadline": "Deadline"
+    "deadline": "Deadline",
+    "clearAll": "Clear All",
+    "filters": "Filters"
 }

@@ -27,5 +27,7 @@
     "taskDeleted": "Тапсырма жойылды",
     "undo": "Болдырмау",
     "addDeadline": "Мерзім қосу",
-    "deadline": "Мерзім"
+    "deadline": "Мерзім",
+    "clearAll": "Барлығын тазалау",
+    "filters": "Сүзгілер"
 }

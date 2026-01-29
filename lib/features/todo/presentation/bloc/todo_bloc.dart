@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
-import 'package:to_do/features/todo/domain/entities/sort_option.dart';
 import 'package:to_do/features/todo/domain/usecases/add_todo_usecase.dart';
 import 'package:to_do/features/todo/domain/usecases/delete_todo_usecase.dart';
 import 'package:to_do/features/todo/domain/usecases/update_todo_usecase.dart';
 import 'package:to_do/features/todo/domain/usecases/watch_todos_usecase.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_event.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_state.dart';
+import 'package:to_do/features/todo/presentation/utils/todo_sorter.dart';
 
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
   final WatchTodosUseCase watchTodosUseCase;
@@ -66,7 +66,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     TodosListUpdated event,
     Emitter<TodoState> emit,
   ) async {
-    final sorted = _sortTodos(event.todos, state.sortOption);
+    final sorted = TodoSorter.sort(event.todos, state.sortOption);
     emit(state.copyWith(status: TodoStatus.success, todos: sorted));
   }
 
@@ -91,7 +91,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     TodosSortChanged event,
     Emitter<TodoState> emit,
   ) async {
-    final sorted = _sortTodos(state.todos, event.sortOption);
+    final sorted = TodoSorter.sort(state.todos, event.sortOption);
     emit(state.copyWith(todos: sorted, sortOption: event.sortOption));
   }
 
@@ -119,38 +119,5 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     Emitter<TodoState> emit,
   ) async {
     await deleteTodoUseCase(event.id);
-  }
-
-  List<Todo> _sortTodos(List<Todo> todos, SortOption sortOption) {
-    final sortedTodos = List<Todo>.from(todos);
-
-    // Sort logic
-    sortedTodos.sort((a, b) {
-      // 1. Pinned always on top
-      if (a.isPinned && !b.isPinned) return -1;
-      if (!a.isPinned && b.isPinned) return 1;
-
-      switch (sortOption) {
-        case SortOption.createdAt:
-          return b.createdAt.compareTo(a.createdAt);
-        case SortOption.deadline:
-          if (a.deadline == null && b.deadline == null) return 0;
-          if (a.deadline == null) return 1;
-          if (b.deadline == null) return -1;
-          return a.deadline!.compareTo(b.deadline!);
-        case SortOption.alphabetical:
-          return a.title.toLowerCase().compareTo(b.title.toLowerCase());
-        case SortOption.priority:
-          // High > Low (High is index 2?)
-          // Enum: low, medium, high.
-          // index: 0, 1, 2.
-          // Descending index.
-          if (a.priority.index > b.priority.index) return -1;
-          if (a.priority.index < b.priority.index) return 1;
-          return b.createdAt.compareTo(a.createdAt); // Secondary
-      }
-    });
-
-    return sortedTodos;
   }
 }

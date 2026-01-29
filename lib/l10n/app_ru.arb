@@ -27,5 +27,7 @@
     "taskDeleted": "Задача удалена",
     "undo": "Отменить",
     "addDeadline": "Добавить дедлайн",
-    "deadline": "Дедлайн"
+    "deadline": "Дедлайн",
+    "clearAll": "Очистить всё",
+    "filters": "Фильтры"
 }

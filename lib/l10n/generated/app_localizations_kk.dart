@@ -91,4 +91,10 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get deadline => 'Мерзім';
+
+  @override
+  String get clearAll => 'Барлығын тазалау';
+
+  @override
+  String get filters => 'Сүзгілер';
 }
