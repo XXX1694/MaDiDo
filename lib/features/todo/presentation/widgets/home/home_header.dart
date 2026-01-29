@@ -5,21 +5,24 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
+import 'package:to_do/core/theme/flow_colors.dart';
 import 'package:to_do/features/todo/domain/entities/sort_option.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_event.dart';
 import 'package:to_do/features/todo/presentation/bloc/todo_state.dart';
 import 'package:to_do/features/todo/presentation/widgets/filter_todo_sheet.dart';
+import 'package:to_do/features/todo/presentation/widgets/home/home_icon_button.dart';
 import 'package:to_do/l10n/generated/app_localizations.dart';
 
 class HomeHeader extends StatelessWidget {
-  final bool isDark;
-
   const HomeHeader({super.key, required this.isDark});
+
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final colors = context.flowColors;
     return SafeArea(
       bottom: false,
       child: Padding(
@@ -33,9 +36,7 @@ class HomeHeader extends StatelessWidget {
                   fontSize: 32,
                   fontWeight: FontWeight.w800,
                   letterSpacing: -1,
-                  color: isDark
-                      ? AppColors.textPrimaryDark
-                      : AppColors.textPrimaryLight,
+                  color: colors.textPrimary,
                 ),
               ),
             ),
@@ -47,19 +48,18 @@ class HomeHeader extends StatelessWidget {
                 final hasFilter =
                     state.filterCategoryId != null ||
                     state.filterPriority != null;
-                return _HomeIconButton(
+                return HomeIconButton(
                   icon: Icons.filter_list_rounded,
-                  isDark: isDark,
                   isActive: hasFilter,
                   onTap: () {
                     HapticFeedback.mediumImpact();
-                    showModalBottomSheet(
+                    showModalBottomSheet<void>(
                       context: context,
                       isScrollControlled: true,
                       backgroundColor: Colors.transparent,
                       builder: (_) => Container(
                         decoration: BoxDecoration(
-                          color: isDark ? AppColors.surfaceDark : Colors.white,
+                          color: colors.surface,
                           borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(20),
                           ),
@@ -74,9 +74,8 @@ class HomeHeader extends StatelessWidget {
             const Gap(4),
             _HomeSortMenu(isDark: isDark),
             const Gap(4),
-            _HomeIconButton(
+            HomeIconButton(
               icon: Icons.settings_rounded,
-              isDark: isDark,
               onTap: () => context.push('/settings'),
             ),
           ],
@@ -86,93 +85,20 @@ class HomeHeader extends StatelessWidget {
   }
 }
 
-class _HomeIconButton extends StatelessWidget {
-  final IconData icon;
-  final bool isDark;
-  final bool isActive;
-  final VoidCallback onTap;
-
-  const _HomeIconButton({
-    required this.icon,
-    required this.isDark,
-    required this.onTap,
-    this.isActive = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final primaryColor = isDark
-        ? AppColors.primaryDark
-        : AppColors.primaryLight;
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: isActive
-                ? (isDark
-                      ? primaryColor.withValues(alpha: 0.15)
-                      : primaryColor.withValues(alpha: 0.05))
-                : null,
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Icon(
-                icon,
-                color: isActive
-                    ? primaryColor
-                    : (isDark
-                          ? AppColors.textPrimaryDark
-                          : AppColors.textPrimaryLight),
-                size: 26,
-              ),
-              if (isActive)
-                Positioned(
-                  top: 12,
-                  right: 12,
-                  child: Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: isDark ? AppColors.surfaceDark : Colors.white,
-                        width: 1.5,
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _HomeSortMenu extends StatelessWidget {
-  final bool isDark;
-
   const _HomeSortMenu({required this.isDark});
+
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final colors = context.flowColors;
     return BlocBuilder<TodoBloc, TodoState>(
       buildWhen: (previous, current) =>
           previous.sortOption != current.sortOption,
       builder: (context, state) {
         final isSortingActive = state.sortOption != SortOption.createdAt;
-        final primaryColor = isDark
-            ? AppColors.primaryDark
-            : AppColors.primaryLight;
         return PopupMenuButton<SortOption>(
           icon: Container(
             width: 48,
@@ -180,9 +106,11 @@ class _HomeSortMenu extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: isSortingActive
-                  ? (isDark
-                        ? primaryColor.withValues(alpha: 0.15)
-                        : primaryColor.withValues(alpha: 0.05))
+                  ? colors.primary.withValues(
+                      alpha: Theme.of(context).brightness == Brightness.dark
+                          ? 0.15
+                          : 0.05,
+                    )
                   : null,
             ),
             child: Stack(
@@ -190,11 +118,7 @@ class _HomeSortMenu extends StatelessWidget {
               children: [
                 Icon(
                   Icons.sort_rounded,
-                  color: isSortingActive
-                      ? primaryColor
-                      : (isDark
-                            ? AppColors.textPrimaryDark
-                            : AppColors.textPrimaryLight),
+                  color: isSortingActive ? colors.primary : colors.textPrimary,
                   size: 26,
                 ),
                 if (isSortingActive)
@@ -205,12 +129,9 @@ class _HomeSortMenu extends StatelessWidget {
                       width: 8,
                       height: 8,
                       decoration: BoxDecoration(
-                        color: primaryColor,
+                        color: colors.primary,
                         shape: BoxShape.circle,
-                        border: Border.all(
-                          color: isDark ? AppColors.surfaceDark : Colors.white,
-                          width: 1.5,
-                        ),
+                        border: Border.all(color: colors.surface, width: 1.5),
                       ),
                     ),
                   ),
@@ -222,7 +143,7 @@ class _HomeSortMenu extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          color: isDark ? AppColors.surfaceDark : Colors.white,
+          color: colors.surface,
           elevation: 8,
           shadowColor: Colors.black.withValues(alpha: 0.2),
           onSelected: (option) {
@@ -230,32 +151,32 @@ class _HomeSortMenu extends StatelessWidget {
           },
           itemBuilder: (context) => [
             _buildSortMenuItem(
+              context: context,
               icon: Icons.access_time_rounded,
               label: l10n.dateCreated,
               value: SortOption.createdAt,
               isSelected: state.sortOption == SortOption.createdAt,
-              isDark: isDark,
             ),
             _buildSortMenuItem(
+              context: context,
               icon: Icons.calendar_today_rounded,
               label: l10n.deadline,
               value: SortOption.deadline,
               isSelected: state.sortOption == SortOption.deadline,
-              isDark: isDark,
             ),
             _buildSortMenuItem(
+              context: context,
               icon: Icons.sort_by_alpha_rounded,
               label: l10n.alphabetical,
               value: SortOption.alphabetical,
               isSelected: state.sortOption == SortOption.alphabetical,
-              isDark: isDark,
             ),
             _buildSortMenuItem(
+              context: context,
               icon: Icons.flag_rounded,
               label: l10n.priority,
               value: SortOption.priority,
               isSelected: state.sortOption == SortOption.priority,
-              isDark: isDark,
             ),
           ],
         );
@@ -264,12 +185,13 @@ class _HomeSortMenu extends StatelessWidget {
   }
 
   PopupMenuItem<SortOption> _buildSortMenuItem({
+    required BuildContext context,
     required IconData icon,
     required String label,
     required SortOption value,
     required bool isSelected,
-    required bool isDark,
   }) {
+    final colors = context.flowColors;
     return PopupMenuItem(
       value: value,
       child: Container(
@@ -283,18 +205,14 @@ class _HomeSortMenu extends StatelessWidget {
                 gradient: isSelected ? AppColors.primaryGradient : null,
                 color: isSelected
                     ? null
-                    : (isDark
+                    : (Theme.of(context).brightness == Brightness.dark
                           ? Colors.white.withValues(alpha: 0.05)
                           : AppColors.inputBackgroundLight),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icon,
-                color: isSelected
-                    ? Colors.white
-                    : (isDark
-                          ? AppColors.textSecondaryDark
-                          : AppColors.textSecondaryLight),
+                color: isSelected ? Colors.white : colors.textSecondary,
                 size: 20,
               ),
             ),
@@ -303,9 +221,7 @@ class _HomeSortMenu extends StatelessWidget {
               label,
               style: GoogleFonts.inter(
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isDark
-                    ? AppColors.textPrimaryDark
-                    : AppColors.textPrimaryLight,
+                color: colors.textPrimary,
               ),
             ),
           ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do/core/theme/app_colors.dart';
+import 'package:to_do/core/theme/flow_colors.dart';
 
 class UiUtils {
   static void showSnackBar(
@@ -10,7 +11,7 @@ class UiUtils {
     VoidCallback? onActionPressed,
     bool isError = false,
   }) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.flowColors;
 
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -18,16 +19,12 @@ class UiUtils {
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.all(20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        backgroundColor: isDark ? AppColors.surfaceDark : Colors.white,
+        backgroundColor: colors.surface,
         content: Text(
           message,
           style: GoogleFonts.inter(
             fontWeight: FontWeight.w500,
-            color: isError
-                ? AppColors.error
-                : (isDark
-                      ? AppColors.textPrimaryDark
-                      : AppColors.textPrimaryLight),
+            color: isError ? AppColors.error : colors.textPrimary,
           ),
         ),
         action: actionLabel != null && onActionPressed != null
@@ -46,15 +43,15 @@ class UiUtils {
     required Widget child,
     bool isScrollControlled = true,
   }) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.flowColors;
 
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
       isScrollControlled: isScrollControlled,
       backgroundColor: Colors.transparent,
       builder: (_) => Container(
         decoration: BoxDecoration(
-          color: isDark ? AppColors.surfaceDark : Colors.white,
+          color: colors.surface,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: child,
