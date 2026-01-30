@@ -17,7 +17,8 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.abzal.to_do"
     compileSdk = 36
-    ndkVersion = flutter.ndkVersion
+    // NDK r28+ required for 16KB page size support
+    ndkVersion = "28.2.13676358"
 
     defaultConfig {
         applicationId = "com.abzal.to_do"
@@ -26,17 +27,11 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true
-        
-        // Включение поддержки 16KB страниц памяти для новых устройств Android
-        externalNativeBuild {
-            cmake {
-                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
-            }
-        }
     }
     
     packaging {
         jniLibs {
+            // Required for 16KB page size support - ensures native libraries are page-aligned
             useLegacyPackaging = false
         }
     }
