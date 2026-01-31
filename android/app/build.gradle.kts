@@ -17,7 +17,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.abzal.to_do"
     compileSdk = 36
-    ndkVersion = "29.0.13846066"
+    ndkVersion = flutter.ndkVersion
 
     defaultConfig {
         applicationId = "com.abzal.to_do"
