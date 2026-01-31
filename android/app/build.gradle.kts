@@ -17,8 +17,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.abzal.to_do"
     compileSdk = 36
-    // NDK r28+ required for 16KB page size support
-    ndkVersion = "28.2.13676358"
+    ndkVersion = "29.0.13846066"
 
     defaultConfig {
         applicationId = "com.abzal.to_do"
