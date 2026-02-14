@@ -52,6 +52,7 @@ const TodoModelSchema = CollectionSchema(
     ),
     r'title': PropertySchema(id: 8, name: r'title', type: IsarType.string),
   },
+
   estimateSize: _todoModelEstimateSize,
   serialize: _todoModelSerialize,
   deserialize: _todoModelDeserialize,
@@ -87,10 +88,11 @@ const TodoModelSchema = CollectionSchema(
   },
   links: {},
   embeddedSchemas: {},
+
   getId: _todoModelGetId,
   getLinks: _todoModelGetLinks,
   attach: _todoModelAttach,
-  version: '3.1.0+1',
+  version: '3.3.0',
 );
 
 int _todoModelEstimateSize(

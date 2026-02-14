@@ -21,7 +21,7 @@ subprojects {
 subprojects {
     afterEvaluate {
         // Fix for Isar namespace issue with newer AGP
-        if (project.name == "isar_flutter_libs") {
+        if (project.name == "isar_community_flutter_libs") {
              try {
                  val android = project.extensions.getByName("android") as com.android.build.gradle.BaseExtension
                  if (android.namespace == null) {

@@ -1,7 +1,7 @@
 name: to_do
 description: "A new Flutter project."
 publish_to: 'none'
-version: 1.0.3+10
+version: 1.1.1+11
 
 environment:
   sdk: ^3.9.0
@@ -21,8 +21,8 @@ dependencies:
   google_fonts: ^6.3.3
   in_app_review: ^2.0.11
   intl: ^0.20.2
-  isar: ^3.1.0+1
-  isar_flutter_libs: ^3.1.0+1
+  isar_community: ^3.3.0
+  isar_community_flutter_libs: ^3.3.0
   path_provider: ^2.1.5
   shared_preferences: ^2.5.4
   timezone: ^0.10.1
@@ -33,7 +33,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.3
   flutter_test:
     sdk: flutter
-  isar_generator: ^3.1.0+1
+  isar_community_generator: ^3.3.0
   very_good_analysis: ^6.0.0
 
 flutter_launcher_icons:

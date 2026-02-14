@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 import 'package:to_do/core/utils/hash_utils.dart';
 import 'package:to_do/features/todo/domain/entities/todo.dart';
 import 'package:to_do/features/todo/domain/entities/todo_priority.dart';
