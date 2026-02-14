@@ -18,15 +18,14 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VS Code
+.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
+.flutter-plugins
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
@@ -62,3 +61,6 @@ android/local.properties
 # Temporary files from scripts
 keystore_base64.txt
 service_account_base64.txt
+
+# Note: *.g.dart files (Isar generated models) are tracked intentionally
+# since isar_generator is needed at build time. Run `make build` to regenerate.

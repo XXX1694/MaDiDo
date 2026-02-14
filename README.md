@@ -44,7 +44,7 @@ A beautiful, feature-rich TODO application built with Flutter and modern archite
 1. **Clone the repository**
    ```bash
    git clone https://github.com/XXX1694/MaDiDo.git
-   cd to_do
+   cd MaDiDo
    ```
 
 2. **Install dependencies**

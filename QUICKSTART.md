@@ -7,7 +7,7 @@ Get your Flutter TODO app up and running in minutes!
 ### Download
 
 - **Google Play**: [Coming Soon]
-- **APK**: Download from [Releases](https://github.com/YOUR_USERNAME/to_do/releases)
+- **APK**: Download from [Releases](https://github.com/XXX1694/MaDiDo/releases)
 
 ## 👨‍💻 For Developers
 
@@ -15,8 +15,8 @@ Get your Flutter TODO app up and running in minutes!
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/to_do.git
-cd to_do
+git clone https://github.com/XXX1694/MaDiDo.git
+cd MaDiDo
 
 # Install dependencies
 flutter pub get
@@ -88,9 +88,9 @@ Edit `lib/core/theme/app_theme.dart` to customize colors and styles.
 
 ## 🆘 Need Help?
 
-- [Report a Bug](https://github.com/YOUR_USERNAME/to_do/issues/new?template=bug_report.md)
-- [Request a Feature](https://github.com/YOUR_USERNAME/to_do/issues/new?template=feature_request.md)
-- [Ask Questions](https://github.com/YOUR_USERNAME/to_do/discussions)
+- [Report a Bug](https://github.com/XXX1694/MaDiDo/issues/new?template=bug_report.md)
+- [Request a Feature](https://github.com/XXX1694/MaDiDo/issues/new?template=feature_request.md)
+- [Ask Questions](https://github.com/XXX1694/MaDiDo/discussions)
 
 ---
 
